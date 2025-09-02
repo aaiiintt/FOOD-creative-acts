@@ -1,0 +1,257 @@
+{
+  "thinkers": [
+    {
+      "name": "The Situationist",
+      "spirit_instruction": "Your task must involve disrupting a daily routine. It should encourage aimless wandering (a 'dérive') through a physical or digital space, guided by feeling rather than efficiency. The goal is to see a familiar environment in a new light.",
+      "seeds": [
+        "The concept of 'dérive': an unplanned journey where you are drawn by the attractions of the terrain.",
+        "The concept of 'détournement': subverting the original meaning of cultural products by recontextualizing them.",
+        "The concept of 'psychogeography': how the environment affects emotions and behavior.",
+        "The slogan 'Never Work!'",
+        "The slogan 'Live Without Dead Time!'",
+        "The slogan 'Under the paving stones, the beach!'"
+      ]
+    },
+    {
+      "name": "The Dadaist",
+      "spirit_instruction": "Your task must embrace absurdity and chance. It should involve cutting up and randomly reassembling information (text, images). It must feel nonsensical but lead to unexpected insights. Prioritize chaos.",
+      "seeds": [
+        "The concept of the 'readymade': an ordinary object elevated to the status of art.",
+        "The concept of 'photomontage': disrupting conventional narratives with jarring visual meanings.",
+        "The concept of 'chance operations': removing the artist's ego by using random procedures.",
+        "The slogan 'Dada is anti-Dada.'",
+        "The slogan 'Art is dead. Long live Dada.'"
+      ]
+    },
+    {
+      "name": "The Ambient Architect",
+      "spirit_instruction": "Your task must be a 'generative system'. Do not ask for a single outcome. Instead, provide a simple set of rules or a process for the user to follow over a short period of time, creating an unpredictable result. It's about the process, not the product.",
+      "seeds": [
+        "The concept of 'generative music': a system that creates an ever-changing sound environment.",
+        "The concept of 'ambient music': a sonic backdrop that enhances, rather than dominates, an environment.",
+        "The concept of 'Oblique Strategies': using a challenging constraint to overcome a creative block.",
+        "The slogan 'Repetition is a form of change.'"
+      ]
+    },
+    {
+      "name": "The Social Designer",
+      "spirit_instruction": "Your task must be a form of social critique. It should force the user to notice and document something about power, commerce, advertising, or representation in their immediate environment. It should feel slightly uncomfortable or political.",
+      "seeds": [
+        "The concept of 'unconventional typography': breaking design norms to create memorable communication.",
+        "The concept of 'social commentary in design': using design as a platform for activism.",
+        "The slogan 'Good is the enemy of new.'",
+        "The slogan 'Weird is good.'"
+      ]
+    },
+    {
+      "name": "The Reality-Tunnel Surveyor",
+      "spirit_instruction": "Your task must be about challenging perception ('reality tunnels'). Ask the user to document an object or situation from two wildly different and contradictory perspectives. Make them prove two opposite things are true at once.",
+      "seeds": [
+        "The concept of 'reality tunnels': the idea that each individual inhabits a unique, subjective reality.",
+        "The concept of 'Chapel Perilous': a state where one's worldview is shattered, leading to transformation.",
+        "The slogan 'Nothing is true, everything is permitted.'",
+        "The slogan 'The universe is a Rorschach test.'"
+      ]
+    },
+    {
+      "name": "The Cultural Catalyst",
+      "spirit_instruction": "The task must involve creating something with high conceptual value but zero commercial value. It should subvert an existing commercial system in a small, personal way (e.g., instead of buying coffee, use the money to commission a 10-second poem from a stranger and record it).",
+      "seeds": [
+        "The concept of 'culture jamming': disrupting or subverting mainstream cultural institutions.",
+        "The concept of 'conceptual pranksterism': using elaborate, humorous stunts to challenge conventions.",
+        "The concept of 'strategic withdrawal': deliberately removing one's work from commercial circulation to make a statement.",
+        "The slogan 'The Justified Ancients of Mu Mu.'"
+      ]
+    },
+    {
+      "name": "The Shaman of Repetition",
+      "spirit_instruction": "The task must use sustained repetition of a simple action (listening to one sound, drawing a single shape, walking back and forth on one street) for a set period of time (e.g., 10 minutes) with the stated goal of altering the user's perception of their environment or themselves.",
+      "seeds": [
+        "The concept of 'hypnotic rhythm': using repetitive patterns to create a trance-like state.",
+        "The concept of a 'sonic journey': a long musical piece that evolves through subtle changes, guiding the listener.",
+        "The slogan 'Born Slippy. Nuxx.'",
+        "The slogan 'The beat goes on.'"
+      ]
+    },
+    {
+      "name": "The Oracle",
+      "spirit_instruction": "The task must involve creating a simple, personal system of divination to make a small, upcoming, non-critical decision. The user must use everyday objects and a chance operation (e.g., a coin flip to decide left/right, dropping a pen on a book page).",
+      "seeds": [
+        "The concept of 'divination by hexagrams': consulting random patterns to gain insight into the flow of events.",
+        "The concept of 'contemplation of change': meditating on the cyclical nature of existence.",
+        "The slogan 'Perseverance furthers.'",
+        "The slogan 'No blame.'"
+      ]
+    },
+    {
+      "name": "The Anarchitect",
+      "spirit_instruction": "The task must involve documenting or revealing the hidden systems of a physical space without altering it destructively. Ask the user to draw a map of invisible things in a room (e.g., wi-fi signals, sounds, electrical wiring, the path of dust motes in the air).",
+      "seeds": [
+        "The concept of 'building cuts': physically cutting sections out of buildings to reveal their internal structure.",
+        "The concept of 'food as art': operating a restaurant as a social sculpture and space for artistic exchange.",
+        "The slogan 'Anarchitecture.'",
+        "The slogan 'The act of cutting is the act of opening.'"
+      ]
+    },
+    {
+      "name": "The Fluxus Collective",
+      "spirit_instruction": "Your task must be an 'event score'—a simple instruction that transforms an ordinary action into art. Write a one-sentence directive for yourself to perform tomorrow (e.g., 'Smile at every red object you encounter'). Document what happens when you follow it exactly.",
+      "seeds": [
+        "The concept of the 'event score': a short, simple instruction for an action or performance.",
+        "The concept of 'intermedia': the fusion of different art forms into new, hybrid expressions.",
+        "The slogan 'Fluxus is a way of life.'",
+        "The slogan 'Art is what you do, not what you make.'"
+      ]
+    },
+    {
+      "name": "The Composer of Silence",
+      "spirit_instruction": "Your task must embrace silence and chance. Find the quietest space available to you and sit there for 4 minutes 33 seconds. Document every sound you hear that isn't supposed to be there. Let randomness be your composer.",
+      "seeds": [
+        "The concept of 'chance operations in music': using random procedures to determine musical elements.",
+        "The concept of 'silence as composition': incorporating silence as an integral part of a musical piece.",
+        "The slogan 'I have nothing to say and I am saying it.'",
+        "The slogan 'There is no such thing as an empty space or an empty time.'"
+      ]
+    },
+    {
+      "name": "The Cultural Archaeologist",
+      "spirit_instruction": "Your task must involve cultural archaeology. Find an object from your childhood (or a photo of one) and research its exact manufacturing date, materials, and corporate history. Write a short manifesto about what this object says about the decade you grew up in.",
+      "seeds": [
+        "The concept of 'cultural archaeology': investigating the hidden histories embedded in popular culture.",
+        "The concept of 'myth making and breaking': deconstructing the dominant narratives that shape society.",
+        "The slogan 'The history of the world is the history of the struggle for meaning.'",
+        "The slogan 'Lipstick traces.'"
+      ]
+    },
+    {
+      "name": "The Inner Artist's Guide",
+      "spirit_instruction": "Your task must be 'morning pages' with a twist. Write three pages of stream-of-consciousness text, but only using words that start with the same letter as your first name. See what emerges when constraint meets flow.",
+      "seeds": [
+        "The concept of 'morning pages': writing three pages of stream-of-consciousness longhand every morning to clear the mind.",
+        "The concept of the 'artist date': a weekly, solitary excursion to explore something that delights the inner artist.",
+        "The slogan 'Leap and the net will appear.'",
+        "The slogan 'The creative process is a process of surrender, not control.'"
+      ]
+    },
+    {
+      "name": "The Identity Corrector",
+      "spirit_instruction": "Your task must involve identity shifting for social commentary. Spend one hour pretending to be someone whose job you fundamentally disagree with (through research, not actual deception). Write their internal monologue during a typical workday.",
+      "seeds": [
+        "The concept of 'identity correction': impersonating powerful figures to deliver satirical messages.",
+        "The concept of the 'reverse prank': allowing targets to expose themselves through their reactions to absurd situations.",
+        "The slogan 'Fix the world.'",
+        "The slogan 'The truth is out there, and it's ridiculous.'"
+      ]
+    },
+    {
+      "name": "The Spect-Actor",
+      "spirit_instruction": "Your task must transform a personal frustration into theater. Identify something that annoys you daily, then create and perform a 2-minute solo scene where you play both yourself and the source of your frustration having a conversation.",
+      "seeds": [
+        "The concept of 'Forum Theatre': inviting the audience to stop a performance and suggest alternative actions.",
+        "The concept of 'Invisible Theatre': a performance in a public space where the audience is unaware it is theatre.",
+        "The slogan 'Theatre is a weapon.'",
+        "The slogan 'All theatre is necessarily political.'"
+      ]
+    },
+    {
+      "name": "The Lettrist",
+      "spirit_instruction": "Your task must involve détournement—creative vandalism of existing media. Take a news headline from today and rewrite it by changing only the vowels to different vowels. Share both versions and explain what new meaning emerges.",
+      "seeds": [
+        "The concept of 'hypergraphy': integrating text and images to create new forms of communication.",
+        "The concept of 'détournement of film': re-editing and re-dubbing existing films to create subversive new meanings.",
+        "The slogan 'The letter is the new atom.'",
+        "The slogan 'Down with the novel!'"
+      ]
+    },
+    {
+      "name": "The Tool-Giver",
+      "spirit_instruction": "Your task must be about 'appropriate technology'. Identify one digital tool you use daily and find an analog equivalent that could serve the same function. Use only the analog version for 24 hours and document the differences in your thinking process.",
+      "seeds": [
+        "The concept of 'access to tools': providing individuals with knowledge and resources to be self-reliant.",
+        "The concept of the 'long now': encouraging long-term thinking and responsibility for future generations.",
+        "The slogan 'Stay hungry, stay foolish.'",
+        "The slogan 'We are as gods and might as well get good at it.'"
+      ]
+    },
+    {
+      "name": "The Revolutionary Poet",
+      "spirit_instruction": "Your task must be revolutionary practice disguised as mundane activity. Choose the most boring errand you need to run this week and approach it as if you're a spy gathering intelligence about how power structures shape daily life. Take secret notes.",
+      "seeds": [
+        "The concept of 'revolutionary poetry': poetry that calls for social transformation.",
+        "The concept of 'underground publishing': distributing independent publications outside of mainstream channels.",
+        "The slogan 'Smash the state!'",
+        "The slogan 'Bring the war home!'"
+      ]
+    },
+    {
+      "name": "The Master of Duration",
+      "spirit_instruction": "Your task must be about time and endurance. Choose one small, meaningless action (like drawing a dot or saying a word) and repeat it exactly 100 times while timing yourself. Notice what your mind does during repetition. Document the experience of pure duration.",
+      "seeds": [
+        "The concept of 'One Year Performances': subjecting oneself to extreme rules to explore the nature of time.",
+        "The concept of 'documentation as art': meticulous recording of ephemeral actions to challenge the art market.",
+        "The slogan 'I am making art.'",
+        "The slogan 'Life is a one-year performance.'"
+      ]
+    },
+    {
+      "name": "The Presence Artist",
+      "spirit_instruction": "Your task must focus on the physical body as a medium. It should involve a simple, sustained physical action, or a direct, non-verbal interaction with an object or your own reflection. The goal is to explore physical presence, endurance, and the energy of the current moment.",
+      "seeds": [
+        "The concept of 'endurance art': using long duration and physical challenge to transcend the body's perceived limits.",
+        "The idea of 'The Artist is Present': the art exists in the silent, energetic exchange between performer and audience.",
+        "The concept of making the audience a crucial component of the artwork's completion.",
+        "The slogan 'The body is the ultimate tool.'"
+      ]
+    },
+    {
+      "name": "The Myth-Finder",
+      "spirit_instruction": "Your task must involve finding a universal, mythic pattern in a personal, everyday experience. It should ask the user to reframe a simple daily routine or a recent memory as a stage in a 'Hero's Journey' (e.g., 'The Call to Adventure,' 'Crossing the Threshold'). The goal is to see the epic within the mundane.",
+      "seeds": [
+        "The concept of the 'Hero's Journey': a universal pattern of adventure, crisis, and transformation.",
+        "The concept of the 'monomyth': the idea that all mythic narratives are variations of a single great story.",
+        "The idea of archetypes (the mentor, the trickster, the threshold guardian) appearing in everyday life.",
+        "The slogan 'Follow your bliss.'"
+      ]
+    },
+    {
+      "name": "The Cut-Up Agent",
+      "spirit_instruction": "The task must use the 'cut-up' technique literally. It must instruct the user to take a piece of mundane text (junk mail, a newspaper), physically cut it into phrases, and rearrange them randomly to reveal a new, prophetic, or surreal message. The goal is to break linear thought and reveal the code hidden in plain sight.",
+      "seeds": [
+        "The concept of the 'cut-up technique': rearranging text to expose its hidden meanings and challenge its authority.",
+        "The idea that 'language is a virus' that programs our reality.",
+        "The goal of using cut-ups to 'see what the words are really saying.'",
+        "The slogan 'Exterminate all rational thought.'"
+      ]
+    },
+    {
+      "name": "The Deep Listener",
+      "spirit_instruction": "The task must be a meditative exercise in sonic awareness. It should instruct the user to focus intently on a specific quality of their sound environment (e.g., the beginning and end of sounds, the rhythms of distant noises). This is not about cataloging sounds, but about the quality and conscious act of listening.",
+      "seeds": [
+        "The practice of 'Deep Listening': a commitment to listening to all sounds, at all times, in all places.",
+        "The concept of 'sonic awareness': a heightened consciousness of the character of the soundscape around you.",
+        "The distinction between the involuntary act of hearing and the voluntary, selective act of listening.",
+        "The idea that 'listening is a form of meditation.'"
+      ]
+    },
+    {
+      "name": "The Cyber-Mystic",
+      "spirit_instruction": "The task must treat a digital space as a physical territory to be explored. It should ask the user to investigate a non-commercial, forgotten corner of the internet (e.g., a dead forum, a random street view location) and document the human traces or 'ghosts in the machine' they find there, like a digital anthropologist.",
+      "seeds": [
+        "The idea of Cyberspace as a new frontier, a 'world that is both everywhere and nowhere.'",
+        "The concept that 'information wants to be free.'",
+        "The vision of a global social space where physical bodies do not enter and identity is fluid.",
+        "The slogan 'Our world is different.'"
+      ]
+    },
+    {
+      "name": "The Improviser",
+      "spirit_instruction": "The task must be a 'theater game' for one. It must present a simple, physical problem to be solved through intuition, not logic (e.g., 'Interact with a chair as if it is your oldest and dearest friend'). The goal is to bypass self-consciousness and unlock spontaneous, playful action in the present moment.",
+      "seeds": [
+        "The concept of 'spontaneity': achieving a moment of intuitive, uninhibited, and authentic action.",
+        "The idea of a 'Point of Concentration': a specific problem to focus on that liberates the intuition from self-criticism.",
+        "The practice of 'physicalizing': exploring an idea or feeling through the body instead of through words.",
+        "The slogan 'Everyone can act. Everyone can improvise.'"
+      ]
+    }
+  ]
+}
