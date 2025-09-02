@@ -24,9 +24,11 @@
         .vote-btn:hover { transform: scale(1.05); }
         .vote-btn:active { transform: scale(0.98); }
 
-        /* --- NEW: Styles for the Download button --- */
-        #end-session-btn { background: #4CAF50; color: white; border: none; padding: 1rem 2rem; font-family: inherit; font-size: 1rem; text-transform: uppercase; cursor: pointer; margin-top: 2rem; display: none; /* Hidden by default */ }
-        #end-session-btn:hover { background: #45a049; }
+        /* --- UPDATED: Styles for the Download button --- */
+        #end-session-btn { background: #4CAF50; color: white; border: none; padding: 1rem 2rem; font-family: inherit; font-size: 1rem; text-transform: uppercase; cursor: pointer; margin-top: 2rem; transition: background-color 0.2s; }
+        #end-session-btn:hover:not(:disabled) { background: #45a049; }
+        #end-session-btn:disabled { background: #cccccc; cursor: not-allowed; }
+
     </style>
 </head>
 <body>
@@ -38,8 +40,8 @@
             <button id="downvote-btn" class="vote-btn">👎</button>
             <button id="upvote-btn" class="vote-btn">👍</button>
         </div>
-        <!-- NEW: Download button -->
-        <button id="end-session-btn">End Session & Download Scores</button>
+        <!-- The button is now always visible but will be disabled initially -->
+        <button id="end-session-btn" disabled>End Session & Download Scores</button>
     </main>
 
     <script>
@@ -52,12 +54,10 @@
 
             let allProvocations = [];
             let currentIndex = 0;
-            // NEW: All scores for this session will be stored here in the browser.
             let sessionScores = [];
 
             async function initialize() {
                 try {
-                    // CHANGED: Fetches the entire deck at once.
                     const response = await fetch('/get_all_provocations');
                     allProvocations = await response.json();
                     
@@ -65,7 +65,7 @@
                         shuffleArray(allProvocations);
                         displayCurrentProvocation();
                     } else {
-                        showCompletionMessage();
+                        showCompletionMessage("The provocation deck is empty.");
                     }
                 } catch (error) {
                     console.error("Initialization Error:", error);
@@ -84,55 +84,46 @@
                 const provocation = allProvocations[currentIndex];
                 renderProvocation(provocation);
             }
-
-            // CHANGED: This function no longer sends data to the server.
+            
             function handleVote(vote) {
+                // Store the score
                 const currentProvocation = allProvocations[currentIndex];
+                sessionScores.push({ ...currentProvocation, vote: vote });
 
-                // 1. Add the score to our in-memory list.
-                sessionScores.push({
-                    ...currentProvocation,
-                    vote: vote
-                });
+                // --- KEY CHANGE: Enable the download button after the first vote ---
+                if (sessionScores.length === 1) {
+                    endSessionBtn.disabled = false;
+                }
 
-                // 2. Move to the next card.
+                // Move to the next card
                 currentIndex++;
                 if (currentIndex >= allProvocations.length) {
-                    showCompletionMessage();
+                    showCompletionMessage("<strong>All Done!</strong><br><br>You have rated all provocations. Thank you!");
                 } else {
                     displayCurrentProvocation();
                 }
             }
             
-            function showCompletionMessage() {
-                 provocationTextEl.innerHTML = `
-                    <span style="text-align: center; width:100%;">
-                        <strong>All Done!</strong><br><br>You have rated all provocations. Please click the button below to download your results.
-                    </span>
-                `;
-                // Hide voting buttons and show the download button.
+            function showCompletionMessage(message) {
+                 provocationTextEl.innerHTML = `<span style="text-align: center; width:100%;">${message}</span>`;
+                // Hide the voting buttons, as there's nothing left to vote on.
                 upvoteBtn.style.display = 'none';
                 downvoteBtn.style.display = 'none';
-                endSessionBtn.style.display = 'block';
             }
 
-            // NEW: This function handles the file download.
             function downloadScores() {
-                // Convert the array of scores into a stringified JSON.
+                if (sessionScores.length === 0) return; // Don't download an empty file
+
                 const jsonString = JSON.stringify(sessionScores, null, 2);
-                // Create a blob, which is a file-like object.
                 const blob = new Blob([jsonString], { type: 'application/json' });
-                // Create a temporary URL for the blob.
                 const url = URL.createObjectURL(blob);
                 
-                // Create a temporary link element to trigger the download.
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'provocation_scores.json';
+                a.download = `provocation_scores_${new Date().toISOString()}.json`; // Adds a timestamp to the filename
                 document.body.appendChild(a);
                 a.click();
                 
-                // Clean up by removing the link and revoking the URL.
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
             }
