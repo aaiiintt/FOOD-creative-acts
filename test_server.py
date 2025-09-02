@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, send_from_directory
 
 # --- CONFIGURATION ---
 PROVOCATIONS_FILE = "provocations.json"
-SCORES_FILE = "provocations_scores.json"
+SCORES_FILE = "/data/provocations_scores.json"
 
 # --- FLASK APP SETUP ---
 app = Flask(__name__, static_url_path='')
