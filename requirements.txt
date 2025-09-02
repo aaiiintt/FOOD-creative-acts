@@ -1,2 +1,6 @@
 Flask
 gunicorn
+google-generativeai
+uvicorn
+python-multipart
+fastapi

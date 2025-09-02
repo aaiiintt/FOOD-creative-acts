@@ -138,8 +138,8 @@
             let thinkers = [];
 
             // --- API Configuration ---
-            const API_KEY = "AIzaSyDKYB5e-4lHnSEAwsgfXOO7WpqJ0fWUh7A"; // PASTE YOUR GEMINI API KEY HERE
-            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+            // The API call is now proxied through the FastAPI backend for security and to hide the API key.
+            const API_URL = `/generate-provocation`;
             
             // --- Core Functions ---
 

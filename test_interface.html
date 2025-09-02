@@ -25,9 +25,157 @@
         .vote-btn:active { transform: scale(0.98); }
 
         /* --- UPDATED: Styles for the Download button --- */
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provocation Testing</title>
+    <style>
+        :root {
+            --main-bg: #1d1212;
+            --text-color: #111;
+            --border-color: #111;
+            --box-bg: #fff;
+        }
+        body { font-family: 'Courier New', Courier, monospace; background-color: var(--main-bg); color: var(--text-color); display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 2rem; box-sizing: border-box; text-align: center; }
+        main { width: 100%; max-width: 600px; }
+        #provocation-container { min-height: 250px; border: 1px solid var(--border-color); padding: 2rem 3rem; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; background-color: var(--box-bg); } 
+        #provocation-text { font-size: 1.2rem; line-height: 1.7; text-align: left; width: 100%; }
+        .task-separator { display: block; text-align: left; margin: 2.5rem 0 1rem 0; }
+        #provocation-container.loading #provocation-text, #provocation-container.error #provocation-text { font-size: 1.1rem; text-align: center; width: 100%; }
+        #provocation-container.error #provocation-text { color: #d90429; }
+        
+        #vote-container { display: flex; justify-content: space-around; gap: 2rem; }
+        .vote-btn { background: var(--box-bg); border: 1px solid var(--border-color); font-size: 4rem; padding: 1rem 2rem; cursor: pointer; transition: transform 0.1s; width: 100%; } 
+        .vote-btn:hover { transform: scale(1.05); }
+        .vote-btn:active { transform: scale(0.98); }
+
+        /* --- UPDATED: Styles for the Download button --- */
         #end-session-btn { background: #4CAF50; color: white; border: none; padding: 1rem 2rem; font-family: inherit; font-size: 1rem; text-transform: uppercase; cursor: pointer; margin-top: 2rem; transition: background-color 0.2s; }
         #end-session-btn:hover:not(:disabled) { background: #45a049; }
         #end-session-btn:disabled { background: #cccccc; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+    <main>
+        <div id="provocation-container" class="loading">
+            <p id="provocation-text">Loading provocation deck...</p>
+        </div>
+        <div id="vote-container">
+            <button id="downvote-btn" class="vote-btn">👎</button>
+            <button id="upvote-btn" class="vote-btn">👍</button>
+        </div>
+        <!-- The button is now always visible but will be disabled initially -->
+        <button id="end-session-btn" disabled>End Session & Download Scores</button>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const provocationContainer = document.getElementById('provocation-container');
+            const provocationTextEl = document.getElementById('provocation-text');
+            const upvoteBtn = document.getElementById('upvote-btn');
+            const downvoteBtn = document.getElementById('downvote-btn');
+            const endSessionBtn = document.getElementById('end-session-btn');
+
+            let allProvocations = [];
+            let currentIndex = 0;
+            let sessionScores = [];
+
+            async function initialize() {
+                try {
+                    const response = await fetch('/provocations'); // Changed endpoint
+                    allProvocations = await response.json();
+                    
+                    if (allProvocations.length > 0) {
+                        shuffleArray(allProvocations);
+                        displayCurrentProvocation();
+                    } else {
+                        showCompletionMessage("The provocation deck is empty.");
+                    }
+                } catch (error) {
+                    console.error("Initialization Error:", error);
+                    provocationContainer.classList.add('error');
+                    provocationTextEl.textContent = "Error: Could not connect to the testing server. Is it running?";
+                } finally {
+                    provocationContainer.classList.remove('loading');
+                }
+
+                upvoteBtn.addEventListener('click', () => handleVote('up'));
+                downvoteBtn.addEventListener('click', () => handleVote('down'));
+                endSessionBtn.addEventListener('click', downloadScores);
+            }
+
+            function displayCurrentProvocation() {
+                const provocation = allProvocations[currentIndex];
+                renderProvocation(provocation);
+            }
+            
+            function handleVote(vote) {
+                // Store the score
+                const currentProvocation = allProvocations[currentIndex];
+                sessionScores.push({ ...currentProvocation, vote: vote });
+
+                // --- KEY CHANGE: Enable the download button after the first vote ---
+                if (sessionScores.length === 1) {
+                    endSessionBtn.disabled = false;
+                }
+
+                // Move to the next card
+                currentIndex++;
+                if (currentIndex >= allProvocations.length) {
+                    showCompletionMessage("<strong>All Done!</strong><br><br>You have rated all provocations. Thank you!");
+                } else {
+                    displayCurrentProvocation();
+                }
+            }
+            
+            function showCompletionMessage(message) {
+                 provocationTextEl.innerHTML = `<span style="text-align: center; width:100%;">${message}</span>`;
+                // Hide the voting buttons, as there's nothing left to vote on.
+                upvoteBtn.style.display = 'none';
+                downvoteBtn.style.display = 'none';
+            }
+
+            function downloadScores() {
+                if (sessionScores.length === 0) return; // Don't download an empty file
+
+                const jsonString = JSON.stringify(sessionScores, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `provocation_scores_${new Date().toISOString()}.json`; // Adds a timestamp to the filename
+                document.body.appendChild(a);
+                a.click();
+                
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            function renderProvocation({ setup, task }) {
+                provocationTextEl.innerHTML = `
+                    <span class="setup-text">${setup}</span>
+                    <span class="task-separator"><u>YOUR TASK</u></span>
+                    <span class="task-text">${task}</span>
+                `;
+            }
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
+
 
     </style>
 </head>
