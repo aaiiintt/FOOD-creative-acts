@@ -12,8 +12,8 @@ This app combines ideas from Situationism, Dadaism, Fluxus, and other creative m
 - **Creative Traditions**: Draws from 25+ different creative thinkers and movements
 - **Fully Customizable**: Edit seeds, prompts, and thinkers through simple JSON files
 - **Simple Interface**: Clean, minimal design focused on the provocations
-- **Vote System**: Track which provocations resonate with thumbs up/down
-- **Persistent Storage**: Saves all generated provocations to JSON
+- **Enhanced Feedback System**: Collect detailed ratings and comments during testing
+- **Persistent Storage**: Saves all generated provocations and feedback to JSON
 
 ## Tech Stack
 

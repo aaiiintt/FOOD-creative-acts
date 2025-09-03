@@ -1,6 +1,6 @@
 # Overview
 
-This is a minimalist web application that generates creative acts and provocations inspired by various artistic and philosophical traditions. The app uses Google's Gemini AI to create unique creative challenges based on movements like Situationism, Dadaism, and Fluxus. Users can generate new provocations, vote on them with thumbs up/down, and all generated content is persistently stored in JSON files.
+This is a minimalist web application that generates creative acts and provocations inspired by various artistic and philosophical traditions. The app uses Google's Gemini AI to create unique creative challenges based on movements like Situationism, Dadaism, and Fluxus. Users can generate new provocations, provide detailed feedback with ratings and comments (when feedback mode is enabled), and all generated content is persistently stored in JSON files.
 
 # User Preferences
 

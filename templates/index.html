@@ -396,19 +396,9 @@
                 const textEl = document.getElementById("provocationText");
                 let html = `<strong>${escapeHtml(data.provocation || "")}</strong>`;
 
-                // Handle both old format (task1, task2, task3) and new format (task)
                 if (data.task) {
                     html += '<span class="task-separator">Task:</span>';
                     html += `<p>${escapeHtml(data.task)}</p>`;
-                } else if (data.task1) {
-                    // Fallback for old format
-                    const tasks = [data.task1, data.task2, data.task3].filter(
-                        (t) => t && t.trim(),
-                    );
-                    if (tasks.length > 0) {
-                        html += '<span class="task-separator">Task:</span>';
-                        html += `<p>${escapeHtml(tasks[0])}</p>`;
-                    }
                 }
 
                 textEl.innerHTML = html;

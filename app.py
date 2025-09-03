@@ -155,26 +155,11 @@ def vote():
         }
         provocations[provocation_id]['feedback'].append(feedback_entry)
         
-        # Keep legacy vote counting for backwards compatibility
-        if 'votes' not in provocations[provocation_id]:
-            provocations[provocation_id]['votes'] = {'up': 0, 'down': 0}
-        
-        if vote_value == 1:
-            provocations[provocation_id]['votes']['up'] += 1
-        else:
-            provocations[provocation_id]['votes']['down'] += 1
-        
         save_provocations(provocations)
         return jsonify({"success": True})
     
     return jsonify({"error": "Invalid provocation id"}), 400
 
-# Serve static files (disabled for security - use proper static file serving in production)
-# @app.route('/<path:path>')
-# def serve_static(path):
-#     if os.path.exists(path):
-#         return send_from_directory('.', path)
-#     return "File not found", 404
 
 if __name__ == '__main__':
     # Use environment variable for port (Render sets this)
