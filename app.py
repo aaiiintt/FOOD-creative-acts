@@ -83,6 +83,8 @@ def generate_provocation():
             # Save to provocations file if it looks valid
             if 'provocation' in result:
                 provocations = load_json_file(PROVOCATIONS_FILE)
+                if not isinstance(provocations, list):
+                    provocations = []
                 provocations.append(result)
                 save_provocations(provocations)
             
@@ -131,7 +133,7 @@ def serve_static(path):
 
 if __name__ == '__main__':
     # Use environment variable for port (Render sets this)
-    port = int(os.environ.get('PORT', 5001))
+    port = int(os.environ.get('PORT', 5000))
     # Disable debug in production
     debug_mode = os.environ.get('FLASK_ENV') == 'development'
     app.run(host='0.0.0.0', port=port, debug=debug_mode)

@@ -119,5 +119,17 @@
   {
     "provocation": "Find the hero's reluctant journey in the clatter of your morning tea.",
     "task": "Arrange three everyday objects – a spoon, a cup, and a teabag – to visually represent a beginning, middle, and end of a personal 'heroic' narrative."
+  },
+  {
+    "provocation": "Silent screams etched in brick, a language only the marginalized speak.",
+    "task": "Photograph a single, unassuming detail of urban architecture that suggests neglect or deliberate exclusion.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
+  },
+  {
+    "provocation": "Walk a path unseen, its edges only felt, a silent dance with the air.",
+    "task": "Slowly navigate a room, pretending invisible walls constrain your movement."
   }
 ]
