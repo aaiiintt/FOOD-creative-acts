@@ -211,5 +211,25 @@
   {
     "provocation": "Where unseen lines meet, a silent story unfolds.",
     "task": "Place a single grain of rice on a flat surface, then close your eyes for exactly 4 minutes and 33 seconds."
+  },
+  {
+    "provocation": "Let chance rewrite your familiar path, a detour into the unknown.",
+    "task": "Close your eyes, spin around three times, and walk in the direction you face."
+  },
+  {
+    "provocation": "From digital echo to whispered parchment, find a new voice in yesterday's silence.",
+    "task": "Write a to-do list on a notepad, using only the notepad for all reminders for 24 hours."
+  },
+  {
+    "provocation": "Stolen gestures dance in a fractured mirror, revealing a new choreography.",
+    "task": "Cut a newspaper into individual words, then randomly rearrange and glue them onto a blank page."
+  },
+  {
+    "provocation": "Lost whispers find form in the turning of pages, a silent archive built by hand.",
+    "task": "Write down all overheard conversations for 24 hours in a notebook, replacing your phone's note-taking app."
+  },
+  {
+    "provocation": "Shadows whisper secrets, only revealed in the sun's absence.",
+    "task": "Write three pages, each word beginning with the letter 'S'."
   }
 ]

@@ -11,6 +11,8 @@ load_dotenv()
 app = Flask(__name__)
 
 THINKERS_FILE = "thinkers.json"
+SEEDS_FILE = "seeds.json"
+PROMPT_FILE = "prompt.json"
 PROVOCATIONS_FILE = "provocations.json"
 
 API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -51,6 +53,14 @@ def get_thinkers():
 @app.route('/api/provocations')
 def get_provocations():
     return jsonify(load_json_file(PROVOCATIONS_FILE))
+
+@app.route('/api/seeds')
+def get_seeds():
+    return jsonify(load_json_file(SEEDS_FILE))
+
+@app.route('/api/prompt')
+def get_prompt():
+    return jsonify(load_json_file(PROMPT_FILE))
 
 @app.route('/api/generate', methods=['POST'])
 def generate_provocation():

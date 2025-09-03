@@ -116,17 +116,31 @@
 
     <script>
         let thinkers = {};
+        let seeds = [];
+        let promptTemplate = {};
         let currentProvocationIndex = -1;
         
         async function initialize() {
             try {
-                const response = await fetch('/api/thinkers');
-                if (!response.ok) throw new Error('Failed to load thinkers');
+                // Load all data in parallel
+                const [thinkersResp, seedsResp, promptResp] = await Promise.all([
+                    fetch('/api/thinkers'),
+                    fetch('/api/seeds'),
+                    fetch('/api/prompt')
+                ]);
                 
-                const data = await response.json();
+                if (!thinkersResp.ok) throw new Error('Failed to load thinkers');
+                if (!seedsResp.ok) throw new Error('Failed to load seeds');
+                if (!promptResp.ok) throw new Error('Failed to load prompt template');
+                
+                const [thinkersData, seedsData, promptData] = await Promise.all([
+                    thinkersResp.json(),
+                    seedsResp.json(),
+                    promptResp.json()
+                ]);
                 
                 // Process thinkers data
-                Object.entries(data).forEach(([name, info]) => {
+                Object.entries(thinkersData).forEach(([name, info]) => {
                     thinkers[name] = {
                         description: info.description || '',
                         themes: info.themes || [],
@@ -134,13 +148,17 @@
                     };
                 });
                 
+                // Store seeds and prompt template
+                seeds = seedsData.seeds || [];
+                promptTemplate = promptData;
+                
                 document.getElementById('generateBtn').disabled = false;
                 await generateProvocation();
                 
             } catch (error) {
                 console.error('Initialization error:', error);
                 document.getElementById('provocationText').innerHTML = 
-                    '<span class="error">Error: Could not load thinkers data. Please check the server.</span>';
+                    '<span class="error">Error: Could not load application data. Please check the server.</span>';
             }
         }
         
@@ -163,64 +181,24 @@
                 }
                 const selected = shuffled.slice(0, Math.min(3, shuffled.length));
                 
-                // Build prompts
-                const systemPrompt = `You are a creative provocateur. Generate a creative act following these CORE RULES:
-                
-- The "provocation" must be a single, short, poetic sentence that sets up the act
-- The "task" must be a SINGLE physical, tangible action
-- Forbid abstract tasks like "imagine" or "consider" 
-- NEVER mention the original source, person, or use any special jargon
-- Keep it simple and actionable
-                
-Your response must be valid JSON with exactly this structure:
-{
-  "provocation": "A single poetic sentence that sets up the creative act",
-  "task": "One specific physical action to perform"
-}`; 
+                // Use loaded prompt template
+                const systemPrompt = promptTemplate.system_prompt || '';
                 
                 // Pick just one thinker for clearer guidance
                 const selectedThinker = selected[0];
                 const spiritInstruction = thinkers[selectedThinker].description;
                 
-                // Large set of conceptual seeds drawn from various creative traditions
-                const seeds = [
-                    "The rhythm of everyday objects",
-                    "Maps of forgotten spaces", 
-                    "Messages to strangers",
-                    "Collecting shadows",
-                    "The texture of time",
-                    "Borrowed movements",
-                    "Silent conversations",
-                    "Temporary monuments",
-                    "The weight of empty spaces",
-                    "Instructions for getting lost",
-                    "Archive of overheard fragments",
-                    "The choreography of waiting",
-                    "Invisible boundaries",
-                    "Accidental rituals",
-                    "The music of machinery",
-                    "Traces left by strangers",
-                    "Misreading the landscape",
-                    "The democracy of dust",
-                    "Conversations with objects",
-                    "The archaeology of the present",
-                    "Translating silence",
-                    "The bureaucracy of dreams",
-                    "Inventories of the abandoned",
-                    "The grammar of gestures",
-                    "Alternative uses for failure",
-                    "The architecture of pauses",
-                    "Collecting evidence of nothing",
-                    "The economy of attention",
-                    "Unauthorized biographies of objects",
-                    "The politics of placement"
-                ];
+                // Pick random seed from loaded seeds
                 const seed = seeds[Math.floor(Math.random() * seeds.length)];
                 
-                const userPrompt = `GUIDING SPIRIT: ${selectedThinker}
-${spiritInstruction}
-
-Based on the conceptual seed "${seed}", generate a creative provocation that follows all the rules, especially the Guiding Spirit instruction.`;
+                // Build user prompt from template
+                const userPromptTemplate = promptTemplate.user_prompt_template || 
+                    'GUIDING SPIRIT: {thinker_name}\n{thinker_instruction}\n\nBased on the conceptual seed "{seed}", generate a creative provocation that follows all the rules, especially the Guiding Spirit instruction.';
+                
+                const userPrompt = userPromptTemplate
+                    .replace('{thinker_name}', selectedThinker)
+                    .replace('{thinker_instruction}', spiritInstruction)
+                    .replace('{seed}', seed);
                 
                 const response = await fetch('/api/generate', {
                     method: 'POST',
