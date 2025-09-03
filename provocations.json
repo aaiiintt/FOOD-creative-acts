@@ -151,5 +151,17 @@
   {
     "provocation": "Rust whispers tales of strength, while polished chrome sings of fleeting grace.",
     "task": "Photograph a single machine part, once highlighting its decay, and again showcasing its elegant design."
+  },
+  {
+    "provocation": "Listen to the whispers where silence ends and sound begins.",
+    "task": "Close your eyes and identify the precise moment each sound starts and stops for one minute.",
+    "votes": {
+      "up": 0,
+      "down": 1
+    }
+  },
+  {
+    "provocation": "Let whispers from the mundane guide your path, a small choice, a clear sign.",
+    "task": "Arrange three household objects in a triangle; flip a coin, heads choose the left object, tails the right; the remaining object reveals your decision."
   }
 ]
