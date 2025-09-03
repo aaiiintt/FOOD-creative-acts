@@ -16,7 +16,7 @@ This app combines ideas from Situationism, Dadaism, Fluxus, and other creative m
 
 ## Tech Stack
 
-- **Backend**: Flask (Python)
+- **Backend**: Flask (Python) with Gunicorn WSGI server
 - **AI**: Google Generative AI (Gemini)
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Data**: JSON files for storage
@@ -50,14 +50,21 @@ Get your API key from: https://makersuite.google.com/app/apikey
 
 ## Usage
 
-1. Start the Flask server:
+### Development Mode
+Start the development server:
 ```bash
 python3 app.py
 ```
 
+### Production Mode (Recommended)
+Start with Gunicorn for better performance:
+```bash
+gunicorn --workers 3 --bind 0.0.0.0:5000 wsgi:app
+```
+
 2. Open your browser and navigate to:
 ```
-http://localhost:5001/
+http://localhost:5000/
 ```
 
 3. Click "Generate New Provocation" to create a creative act
@@ -66,7 +73,8 @@ http://localhost:5001/
 
 ```
 FOOD-creative-acts/
-├── app.py                 # Flask server
+├── app.py                 # Flask application
+├── wsgi.py               # Gunicorn entry point
 ├── templates/
 │   └── index.html        # Web interface
 ├── thinkers.json         # Creative traditions data
