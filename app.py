@@ -13,6 +13,7 @@ app = Flask(__name__)
 THINKERS_FILE = "thinkers.json"
 SEEDS_FILE = "seeds.json"
 PROMPT_FILE = "prompt.json"
+CONFIG_FILE = "config.json"
 PROVOCATIONS_FILE = "provocations.json"
 
 API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -61,6 +62,10 @@ def get_seeds():
 @app.route('/api/prompt')
 def get_prompt():
     return jsonify(load_json_file(PROMPT_FILE))
+
+@app.route('/api/config')
+def get_config():
+    return jsonify(load_json_file(CONFIG_FILE))
 
 @app.route('/api/generate', methods=['POST'])
 def generate_provocation():
@@ -127,6 +132,7 @@ def vote():
         
     provocation_id = data.get('id')
     vote_value = data.get('vote')
+    comment = data.get('comment', '')
     
     if provocation_id is None or vote_value is None:
         return jsonify({"error": "Missing id or vote"}), 400
@@ -136,6 +142,20 @@ def vote():
         return jsonify({"error": "Invalid provocations data structure"}), 500
     
     if 0 <= provocation_id < len(provocations):
+        # Initialize feedback structure if it doesn't exist
+        if 'feedback' not in provocations[provocation_id]:
+            provocations[provocation_id]['feedback'] = []
+        
+        # Add new feedback entry
+        from datetime import datetime
+        feedback_entry = {
+            'rating': vote_value,
+            'comment': comment,
+            'timestamp': datetime.now().isoformat()
+        }
+        provocations[provocation_id]['feedback'].append(feedback_entry)
+        
+        # Keep legacy vote counting for backwards compatibility
         if 'votes' not in provocations[provocation_id]:
             provocations[provocation_id]['votes'] = {'up': 0, 'down': 0}
         

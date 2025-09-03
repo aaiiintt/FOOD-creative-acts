@@ -1,0 +1,9 @@
+{
+  "_description": "Application configuration settings",
+  "_instructions": [
+    "feedback_mode: Set to true to enable detailed feedback collection during testing",
+    "When feedback_mode is false, no rating interface will be shown to users"
+  ],
+  "feedback_mode": true,
+  "app_version": "1.0.0"
+}
