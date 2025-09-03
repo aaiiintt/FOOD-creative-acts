@@ -58,6 +58,9 @@ def generate_provocation():
         return jsonify({"error": "API key not configured"}), 500
     
     data = request.json
+    if not data:
+        return jsonify({"error": "No JSON data provided"}), 400
+    
     system_prompt = data.get('systemPrompt', '')
     user_prompt = data.get('userPrompt', '')
     
@@ -78,7 +81,14 @@ def generate_provocation():
             elif '```' in response_text:
                 response_text = response_text.split('```')[1].split('```')[0].strip()
             
-            result = json.loads(response_text)
+            try:
+                result = json.loads(response_text)
+            except json.JSONDecodeError:
+                return jsonify({"error": "Invalid JSON response from AI"}), 500
+            
+            # Validate result structure
+            if not isinstance(result, dict) or 'provocation' not in result:
+                return jsonify({"error": "Invalid response format from AI"}), 500
             
             # Save to provocations file if it looks valid
             if 'provocation' in result:
@@ -102,6 +112,9 @@ def generate_provocation():
 @app.route('/api/vote', methods=['POST'])
 def vote():
     data = request.json
+    if not data:
+        return jsonify({"error": "No JSON data provided"}), 400
+        
     provocation_id = data.get('id')
     vote_value = data.get('vote')
     
@@ -109,6 +122,8 @@ def vote():
         return jsonify({"error": "Missing id or vote"}), 400
     
     provocations = load_json_file(PROVOCATIONS_FILE)
+    if not isinstance(provocations, list):
+        return jsonify({"error": "Invalid provocations data structure"}), 500
     
     if 0 <= provocation_id < len(provocations):
         if 'votes' not in provocations[provocation_id]:
@@ -124,12 +139,12 @@ def vote():
     
     return jsonify({"error": "Invalid provocation id"}), 400
 
-# Serve static files
-@app.route('/<path:path>')
-def serve_static(path):
-    if os.path.exists(path):
-        return send_from_directory('.', path)
-    return "File not found", 404
+# Serve static files (disabled for security - use proper static file serving in production)
+# @app.route('/<path:path>')
+# def serve_static(path):
+#     if os.path.exists(path):
+#         return send_from_directory('.', path)
+#     return "File not found", 404
 
 if __name__ == '__main__':
     # Use environment variable for port (Render sets this)

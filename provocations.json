@@ -131,5 +131,25 @@
   {
     "provocation": "Walk a path unseen, its edges only felt, a silent dance with the air.",
     "task": "Slowly navigate a room, pretending invisible walls constrain your movement."
+  },
+  {
+    "provocation": "Sleep's rigid forms, dissected, shall dance a new illogical order.",
+    "task": "Cut a newspaper into strips, then reassemble them randomly to create a new text.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
+  },
+  {
+    "provocation": "Silence blooms where commerce screams, a fleeting monument to unbought time.",
+    "task": "Place a single, perfectly smooth river stone on a busy street corner.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
+  },
+  {
+    "provocation": "Rust whispers tales of strength, while polished chrome sings of fleeting grace.",
+    "task": "Photograph a single machine part, once highlighting its decay, and again showcasing its elegant design."
   }
 ]
