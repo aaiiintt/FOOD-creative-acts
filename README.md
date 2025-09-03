@@ -25,7 +25,7 @@ This app combines ideas from Situationism, Dadaism, Fluxus, and other creative m
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/FOOD-creative-acts.git
+git clone https://github.com/aaiiintt/FOOD-creative-acts.git
 cd FOOD-creative-acts
 ```
 
