@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Acts Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1d1212;
+            color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .provocation-box {
+            background-color: #fff;
+            border: 1px solid #111;
+            padding: 3rem;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .provocation-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            text-align: left;
+            width: 100%;
+        }
+
+        .loading {
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .error {
+            color: #d90429;
+            text-align: center;
+        }
+
+        button {
+            background-color: #fff;
+            border: 1px solid #111;
+            color: #111;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #111;
+            color: #fff;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .vote-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .vote-btn {
+            font-size: 2rem;
+            padding: 0.5rem;
+        }
+
+        .task-separator {
+            display: block;
+            margin: 2rem 0 1rem 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="provocation-box" id="provocationBox">
+            <div class="provocation-text" id="provocationText">
+                <span class="loading">Initializing...</span>
+            </div>
+        </div>
+        
+        <button id="generateBtn" onclick="generateProvocation()" disabled>
+            Generate New Provocation
+        </button>
+        
+        <div class="vote-container" id="voteContainer" style="display: none;">
+            <button class="vote-btn" onclick="vote(1)">👍</button>
+            <button class="vote-btn" onclick="vote(-1)">👎</button>
+        </div>
+    </div>
+
+    <script>
+        let thinkers = {};
+        let currentProvocationIndex = -1;
+        
+        async function initialize() {
+            try {
+                const response = await fetch('/api/thinkers');
+                if (!response.ok) throw new Error('Failed to load thinkers');
+                
+                const data = await response.json();
+                
+                // Process thinkers data
+                Object.entries(data).forEach(([name, info]) => {
+                    thinkers[name] = {
+                        description: info.description || '',
+                        themes: info.themes || [],
+                        keywords: info.keywords || []
+                    };
+                });
+                
+                document.getElementById('generateBtn').disabled = false;
+                await generateProvocation();
+                
+            } catch (error) {
+                console.error('Initialization error:', error);
+                document.getElementById('provocationText').innerHTML = 
+                    '<span class="error">Error: Could not load thinkers data. Please check the server.</span>';
+            }
+        }
+        
+        async function generateProvocation() {
+            const btn = document.getElementById('generateBtn');
+            const textEl = document.getElementById('provocationText');
+            const voteContainer = document.getElementById('voteContainer');
+            
+            btn.disabled = true;
+            textEl.innerHTML = '<span class="loading">Generating...</span>';
+            voteContainer.style.display = 'none';
+            
+            try {
+                // Pick random thinkers
+                const thinkerNames = Object.keys(thinkers);
+                const shuffled = [...thinkerNames].sort(() => Math.random() - 0.5);
+                const selected = shuffled.slice(0, Math.min(3, shuffled.length));
+                
+                // Build prompts
+                const systemPrompt = `You are a creative provocateur. Generate a creative act following these CORE RULES:
+                
+- The "provocation" must be a single, short, poetic sentence that sets up the act
+- The "task" must be a SINGLE physical, tangible action
+- Forbid abstract tasks like "imagine" or "consider" 
+- NEVER mention the original source, person, or use any special jargon
+- Keep it simple and actionable
+                
+Your response must be valid JSON with exactly this structure:
+{
+  "provocation": "A single poetic sentence that sets up the creative act",
+  "task": "One specific physical action to perform"
+}`; 
+                
+                // Pick just one thinker for clearer guidance
+                const selectedThinker = selected[0];
+                const spiritInstruction = thinkers[selectedThinker].description;
+                
+                // Large set of conceptual seeds drawn from various creative traditions
+                const seeds = [
+                    "The rhythm of everyday objects",
+                    "Maps of forgotten spaces", 
+                    "Messages to strangers",
+                    "Collecting shadows",
+                    "The texture of time",
+                    "Borrowed movements",
+                    "Silent conversations",
+                    "Temporary monuments",
+                    "The weight of empty spaces",
+                    "Instructions for getting lost",
+                    "Archive of overheard fragments",
+                    "The choreography of waiting",
+                    "Invisible boundaries",
+                    "Accidental rituals",
+                    "The music of machinery",
+                    "Traces left by strangers",
+                    "Misreading the landscape",
+                    "The democracy of dust",
+                    "Conversations with objects",
+                    "The archaeology of the present",
+                    "Translating silence",
+                    "The bureaucracy of dreams",
+                    "Inventories of the abandoned",
+                    "The grammar of gestures",
+                    "Alternative uses for failure",
+                    "The architecture of pauses",
+                    "Collecting evidence of nothing",
+                    "The economy of attention",
+                    "Unauthorized biographies of objects",
+                    "The politics of placement"
+                ];
+                const seed = seeds[Math.floor(Math.random() * seeds.length)];
+                
+                const userPrompt = `GUIDING SPIRIT: ${selectedThinker}
+${spiritInstruction}
+
+Based on the conceptual seed "${seed}", generate a creative provocation that follows all the rules, especially the Guiding Spirit instruction.`;
+                
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({systemPrompt, userPrompt})
+                });
+                
+                if (!response.ok) throw new Error('Generation failed');
+                
+                const data = await response.json();
+                
+                if (data.provocation) {
+                    displayProvocation(data);
+                    
+                    // Store the provocation index for voting
+                    const provocationsResp = await fetch('/api/provocations');
+                    const provocations = await provocationsResp.json();
+                    currentProvocationIndex = provocations.length - 1;
+                    
+                    voteContainer.style.display = 'flex';
+                } else {
+                    throw new Error('Invalid response format');
+                }
+                
+            } catch (error) {
+                console.error('Generation error:', error);
+                textEl.innerHTML = '<span class="error">Error generating provocation. Please try again.</span>';
+            } finally {
+                btn.disabled = false;
+            }
+        }
+        
+        function displayProvocation(data) {
+            const textEl = document.getElementById('provocationText');
+            let html = `<strong>${data.provocation}</strong>`;
+            
+            // Handle both old format (task1, task2, task3) and new format (task)
+            if (data.task) {
+                html += '<span class="task-separator">Task:</span>';
+                html += `<p>${data.task}</p>`;
+            } else if (data.task1) {
+                // Fallback for old format
+                const tasks = [data.task1, data.task2, data.task3].filter(t => t && t.trim());
+                if (tasks.length > 0) {
+                    html += '<span class="task-separator">Task:</span>';
+                    html += `<p>${tasks[0]}</p>`;
+                }
+            }
+            
+            textEl.innerHTML = html;
+        }
+        
+        async function vote(value) {
+            if (currentProvocationIndex < 0) return;
+            
+            try {
+                await fetch('/api/vote', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        id: currentProvocationIndex,
+                        vote: value
+                    })
+                });
+                
+                document.getElementById('voteContainer').style.display = 'none';
+            } catch (error) {
+                console.error('Vote error:', error);
+            }
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', initialize);
+    </script>
+</body>
+</html>

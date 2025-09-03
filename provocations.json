@@ -1,108 +1,119 @@
 [
   {
-    "setup": "Embrace chance encounters by cutting magazine words, then glue them into a new poem.",
-    "task": "Cut words from a magazine, rearrange and glue them onto paper as a Dadaist poem."
+    "provocation": "Create a 'Zero-Value Monument' to a fading commercial practice, using your body and radically different perspectives.",
+    "task1": "Identify a dying or rapidly changing commercial practice (e.g., a local bookstore closing, a specific type of craft becoming obsolete, the decline of a particular type of social interaction).  Dedicate $20 (or your equivalent of a small, expendable amount of money) that would normally be spent supporting this practice towards creating a 'Zero-Value Monument'.  Don't buy something; instead, commission a short performance (song, poem, mime, etc.) from a stranger reflecting on the fading practice. Record this using only your phone.",
+    "task2": "Perform a sustained physical action for 20 minutes in front of a mirror or in a public place (e.g., holding a specific pose, repeating a simple gesture).  Focus entirely on your physical sensations and your breath.  The action must be simple enough to maintain, pushing the limits of comfort and endurance. Document this only with a written description of the physical and emotional experience,  avoiding video or photos.",
+    "task3": "Create two contradictory written accounts of the same 20-minute performance from Task 2.  One account must frame it as an act of profound self-discovery and spiritual connection. The other must frame it as a pointless, even absurd, waste of time and energy.  Present both accounts side-by-side, making it impossible to know which is 'true' without the context of your lived experience. Combine this with the audio recording from task 1.",
+    "reflection": "How does the juxtaposition of the zero-value artistic commission (Task 1), the physically demanding performance (Task 2), and the contradictory narratives (Task 3) challenge your perception of value, time, and reality?  What does this project reveal about the power of subjective experience and the limits of objective truth?"
   },
   {
-    "setup": "Beneath the visible surface, spaces pulse with unseen currents.",
-    "task": "On a sheet of paper, draw a map of your chosen room, detailing the invisible paths of its Wi-Fi signals, air currents, and the imagined flow of sounds."
+    "provocation": "Reveal the Invisible Symphony: A Dadaist Anarchitecture Fluxus Event Score",
+    "task1": "Create an 'invisible map' of your chosen room.  Use drawing, annotations, and found materials to depict at least three invisible systems: the path of dust motes (observed over 30 minutes), the perceived strength and direction of Wi-Fi signal (using a device to measure), and a speculative map of the electrical wiring hidden within the walls (based on where outlets and light switches are located).  Label your findings in a nonsensical yet evocative manner (e.g., 'Whispers of the Aether', 'Dust's Silent Dance', 'Electron's Secret Rivers').",
+    "task2": "Tomorrow, perform this Fluxus event score: 'Follow the most absurd suggestion from your invisible map.' (e.g., if your dust mote map shows a swirling vortex, walk in a slow circle for 5 minutes mimicking its movement).  Document the event through a series of still images and brief written descriptions.",
+    "task3": "Cut your invisible map into small pieces, then randomly reassemble it.  Photograph the new, chaotic map.  Write a Dadaist poem (at least 5 lines) interpreting the rearranged map, focusing on the juxtaposition of elements and the new narrative that emerges.  Consider using words from your annotations and adding nonsensical words. ",
+    "reflection": "How did the act of revealing invisible systems and subsequently disrupting their order through Dadaist techniques alter your perception of the physical space and your own actions within it?  What unexpected insights or emotions did the seemingly meaningless act of following the absurd suggestion from your map generate?"
   },
   {
-    "setup": "A daily routine is a script waiting for a different actor.",
-    "task": "Choose one part of your morning routine and perform it with the opposite hand. Document the feeling in a single sentence."
+    "provocation": "Echoes whisper secrets in the fading light, a borrowed movement of sound.",
+    "task1": "Close your eyes and listen intently for the precise moment a sound begins and ends, focusing only on that transition for at least one minute.",
+    "task2": "Identify three distinct sounds in your environment. For each, trace the subtle shifts in their volume and tone over a period of 30 seconds.",
+    "task3": "With eyes still closed,  attempt to 'borrow' the rhythm of a distant sound, translating it into a gentle, silent movement of your body.",
+    "reflection": "What unseen choreography did you discover in the borrowed movements of sound?"
   },
   {
-    "setup": "Your reflection awaits a silent, sustained gaze.",
-    "task": "Stand before a mirror for two minutes, holding your own gaze without speaking, then take a close-up photo of your eyes in the reflection."
+    "provocation": "Rusting gears whisper forgotten melodies in the digital ether; find their song.",
+    "task": "Take a screenshot of a defunct online forum's last active thread."
   },
   {
-    "setup": "The marketplace hums with silent demands, but a whisper can change the tune.",
-    "task": "Select one ordinary packaged item, craft a small, poetic label that redefines its purpose, discreetly affix it, and photograph the result."
+    "provocation": "Let your body trace the phantom pathways of a vanished city.",
+    "task": "Walk a room, mimicking the gestures of someone navigating an invisible, intricate maze.",
+    "votes": {
+      "up": 0,
+      "down": 1
+    }
   },
   {
-    "setup": "Sometimes, the truest reflection is found in someone else's shadow.",
-    "task": "For one hour, perform a mundane task while silently inhabiting the mindset of someone whose job you fundamentally disagree with. Capture a photo of the single most absurd or hypocritical detail you observe through their imagined lens."
+    "provocation": "Trace the hero's descent in the spilled coffee's stain.",
+    "task": "Draw a line following the shape of a coffee stain on a napkin.",
+    "votes": {
+      "up": 0,
+      "down": 1
+    }
   },
   {
-    "setup": "Allow the unseen hand of chance to sketch a tiny, unfolding world.",
-    "task": "In the hushed pauses, a hidden orchestra awaits its cue. Find the quietest space available, sit for exactly 4 minutes and 33 seconds, and record every incidental sound you perceive during that time."
+    "provocation": "Map the whispers of absence, the ghosts of occupancy in this silent room.",
+    "task": "Draw a map of the room, highlighting the locations of all visible electrical outlets and light switches.",
+    "votes": {
+      "up": 0,
+      "down": 1
+    }
   },
   {
-    "setup": "Time reveals itself in the echo of a repeated act.",
-    "task": "Draw 100 identical tiny marks on a page, timing how long it takes, then take a picture of the page with the total time and a single word describing your experience written upon it."
+    "provocation": "Where words fall, power resides: rearrange their scattered bones.",
+    "task": "Cut a junk mail advertisement into phrases, then randomly reassemble them into a new sentence on a clean sheet of paper.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
   },
   {
-    "setup": "The universe breathes in hidden rhythms and subtle shifts.",
-    "task": "Ahead of a non-critical choice, assign 'yes' and 'no' to two unique, small found objects, then hide them in your hands and let a random draw reveal your answer, photographing your chosen oracle."
+    "provocation": "From broken things, a symphony of new purpose shall arise.",
+    "task": "Find a broken object, carefully repair a single, visible imperfection with found materials."
   },
   {
-    "setup": "Every street corner whispers secrets of the world's design.",
-    "task": "During your most routine weekly task, observe how invisible systems influence your movements or choices, jotting three coded observations on a discarded receipt."
+    "provocation": "Unseen lives whisper from the shelf; speak their silent story.",
+    "task": "Write a one-page internal monologue from the perspective of a corporate lobbyist during a typical workday.",
+    "votes": {
+      "up": 0,
+      "down": 1
+    }
   },
   {
-    "setup": "Echoes of old thoughts still linger in the silent corners of the net.",
-    "task": "Find a public message board with no activity since 2010 and screenshot the last human thought posted there."
+    "provocation": "Rust whispers tales of forgotten grandeur, yet whispers also of future reclamation.",
+    "task": "Photograph a single abandoned object, once from a perspective emphasizing its decay, then again highlighting its potential for renewed purpose."
   },
   {
-    "setup": "Find the wild heart of language within a whispered constraint.",
-    "task": "Dedicate three pages to a flowing script, where every word begins with the first letter of your own name."
+    "provocation": "Find the hidden song in the clatter of your kitchen, then set it free.",
+    "task": "Record a one-minute soundscape of your kitchen using only existing objects, then upload it anonymously online.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
   },
   {
-    "setup": "Let language crumble into new echoes.",
-    "task": "Find a current news headline. Rewrite it by replacing every vowel (A, E, I, O, U) with a different vowel, keeping consonants intact. Capture a photo of both versions and a single sentence describing the surprising new meaning."
+    "provocation": "Empty pockets whisper tales of vanished things, let them speak.",
+    "task": "Collect five unrelated small objects, arrange them on a flat surface, and narrate a two-minute silent scene using only gestures and facial expressions depicting a conversation between you and the absence represented by the objects.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
   },
   {
-    "setup": "Sometimes, the oldest tools offer the sharpest insights.",
-    "task": "Choose one digital tool you rely on daily, then find its simplest, non-electronic counterpart; use only that physical tool for 24 hours, and then photograph it with a handwritten sentence describing one unexpected shift in your attention."
+    "provocation": "Echoes of absent hands linger, in pixels long since stilled.",
+    "task": "Photograph a single, unpopulated screen capture from a defunct online forum.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
   },
   {
-    "setup": "The world offers its face, but your mind paints its reflection.",
-    "task": "Choose a mundane, forgotten item in your space. Take two distinct photos of it: one that makes it appear utterly useless, and another that frames it as absolutely essential."
+    "provocation": "Let sleeping forms dictate the waking pen, a silent bureaucracy of ink.",
+    "task": "Write down every sound heard during four minutes and thirty-three seconds of complete stillness.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
   },
   {
-    "setup": "Every door, every delay, hides a guardian of your small, unfolding epic.",
-    "task": "Recall a minor obstacle you encountered today. Take a photo of the person or object that stood between you and your immediate goal, declaring them your 'Threshold Guardian'."
+    "provocation": "Trace the ghost of silence between each sound's sigh and gasp.",
+    "task": "Close your eyes and listen for the spaces between sounds for one minute.",
+    "votes": {
+      "up": 1,
+      "down": 0
+    }
   },
   {
-    "setup": "Let the irritations of your day find their voice and their stage.",
-    "task": "Pinpoint a minor daily annoyance, then embody both yourself and its essence in a two-minute dramatic conversation, capturing a photo of your dual performance."
-  },
-  {
-    "setup": "The true nature of things awaits a wild re-stitching of their names.",
-    "task": "Select a single, overlooked item from your immediate surroundings, write ten words that describe it, cut each word into a separate slip of paper, then toss them all in the air and arrange them precisely where they land. Photograph this new linguistic landscape."
-  },
-  {
-    "setup": "Unearth a quiet rebellion from the debris of a shared past.",
-    "task": "Choose an object from your childhood, photograph a single, telling mark of its making or decay, then rename its manufacturer and invent a new, defiant purpose for it in one sentence."
-  },
-  {
-    "setup": "The world's deepest whispers often move to hidden, distant beats.",
-    "task": "Tune your ear to the most distant, indistinct rhythms you can perceive, and then press a single thumbprint onto a small card for each pulse, creating a silent, tactile score."
-  },
-  {
-    "setup": "Every hard surface conceals a secret freedom.",
-    "task": "Wander a familiar paved path, letting your eyes only drift to the ground, and capture a photo of the smallest, most stubborn patch of life or liquid you find pushing through the concrete."
-  },
-  {
-    "setup": "The world is a collage waiting for an accidental hand.",
-    "task": "Find a piece of text, rip it into twenty random pieces, toss them into the air, and glue them down precisely where they fall onto a fresh page."
-  },
-  {
-    "setup": "Beyond the ledger's cold sum, other treasures accumulate.",
-    "task": "Obtain a retail receipt, select one item, and replace its numerical price with a single, hand-written word reflecting its intrinsic, non-commercial value, then photograph this new ledger."
-  },
-  {
-    "setup": "A quiet directive, adrift in the day's gentle current.",
-    "task": "Write a single, simple instruction on a small piece of paper, leave it somewhere public, and photograph its resting place."
-  },
-  {
-    "setup": "Even the most constant gaze will discover a shifting truth.",
-    "task": "For seven days, choose one mundane object or spot in your immediate environment and photograph it from the exact same angle at the exact same time each day, compiling the images into a single digital album."
-  },
-  {
-    "setup": "A gathering place hums with more than just conversation.",
-    "task": "While eating with others, draw a simple floor plan of your table and map the energetic paths of conversation, attention, and shared glances."
-  },
-  {
-    "setup": "Let a flicker of fate lift the weight of your next tiny choice.",
-    "task": "When faced with a trivial choice today, pick a random page in a nearby book; if the page number is even,
+    "provocation": "Listen for the silent song of forgotten servers, a ghost orchestra in the digital dust.",
+    "task": "Take a screenshot of a defunct website's error page."
+  }
+]

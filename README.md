@@ -1,107 +1,106 @@
-# FOOD-creative-acts
+# Creative Acts Generator
 
-## Creative Acts to Make You Think
+A minimalist web application that generates thought-provoking creative acts inspired by various artistic and philosophical traditions.
 
-This project is a system designed to generate and display "creative acts" or thought-provoking prompts. It is now a single FastAPI application that handles both the web interface and AI-powered provocation generation.
+## Overview
+
+This app combines ideas from Situationism, Dadaism, Fluxus, and other creative movements to generate simple, actionable creative provocations. Each provocation consists of a poetic setup and a single physical task designed to shift your perspective on everyday life.
 
 ## Features
 
-*   **Provocation Generation**: Utilizes AI/LLM models to generate unique and thought-provoking creative acts.
-*   **Web Interface**: A simple web-based interface to view existing provocations and trigger the generation of new ones.
-*   **API Endpoints**: Provides API access to retrieve provocations and initiate the generation process.
+- **AI-Powered Generation**: Uses Google's Gemini AI to create unique provocations
+- **Creative Traditions**: Draws from 25+ different creative thinkers and movements
+- **Simple Interface**: Clean, minimal design focused on the provocations
+- **Vote System**: Track which provocations resonate with thumbs up/down
+- **Persistent Storage**: Saves all generated provocations to JSON
 
-## Technologies Used
+## Tech Stack
 
-### Frontend
-*   HTML
-*   JavaScript
+- **Backend**: Flask (Python)
+- **AI**: Google Generative AI (Gemini)
+- **Frontend**: Vanilla HTML/CSS/JavaScript
+- **Data**: JSON files for storage
 
-### Backend (Python)
-*   Python
-*   FastAPI
-*   Uvicorn (ASGI server)
-*   Gunicorn (WSGI HTTP server)
-*   LangChain (for LLM orchestration)
-*   OpenAI (for AI model interaction)
-*   python-dotenv (for environment variables)
+## Installation
 
-### Data
-*   JSON for storing provocations and scores.
-
-## Setup and Installation
-
-To set up and run this project locally, follow these steps:
-
-### 1. Clone the Repository
-
+1. Clone the repository:
 ```bash
 git clone https://github.com/your-username/FOOD-creative-acts.git
 cd FOOD-creative-acts
 ```
 
-### 2. Python Backend Setup
-
-It's recommended to use a virtual environment for Python dependencies:
-
+2. Create and activate a virtual environment:
 ```bash
 python3 -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Environment Variables
-
-Create a `.env` file in the project root and add your Google API key:
-
-```
-GOOGLE_API_KEY="your_google_api_key_here"
-```
-
-### 4. Running the Application
-
-Start the FastAPI application using Gunicorn:
-
+4. Set up your environment variables:
 ```bash
-gunicorn -w 4 -k uvicorn.workers.UvicornWorker generate:app
+# Create .env file
+echo 'GOOGLE_API_KEY="your_gemini_api_key_here"' > .env
 ```
 
-### 5. Accessing the Frontend
-
-Once the backend is running, open your web browser and navigate to:
-
-```
-http://localhost:8000/
-```
-
-This will redirect you to `example.html`. You can also directly access:
-
-```
-http://localhost:8000/static/example.html
-```
-or
-
-```
-http://localhost:8000/static/test_interface.html
-```
+Get your API key from: https://makersuite.google.com/app/apikey
 
 ## Usage
 
-*   **View Provocations**: The main interface will display a list of creative acts.
-*   **Generate New**: Click the "Generate New Provocation" button (on `example.html`) to create a new thought-provoking prompt using the AI backend.
+1. Start the Flask server:
+```bash
+python3 app.py
+```
 
----
+2. Open your browser and navigate to:
+```
+http://localhost:5001/
+```
 
-## Future Developments
+3. Click "Generate New Provocation" to create a creative act
 
-This project is a foundation for exploring AI-generated creative content. We encourage contributions and forks to expand its capabilities! Here are some ideas for future development:
+## Project Structure
 
-*   **User Authentication**: Implement user login and registration to personalize experiences.
-*   **Provocation Curation**: Allow users to save, categorize, and share their favorite provocations.
-*   **Advanced Scoring/Feedback**: Develop more sophisticated ways for users to provide feedback on provocations (e.g., upvoting/downvoting, detailed reviews).
-*   **Diverse Generation Models**: Integrate support for different AI models or fine-tune existing ones for specific types of creative acts.
-*   **Thematic Generation**: Enable users to request provocations based on specific themes or keywords.
-*   **Improved UI/UX**: Enhance the frontend with a more dynamic and interactive user interface, potentially using a modern JavaScript framework (e.g., React, Vue, Svelte).
-*   **Containerization**: Provide Docker support for easier deployment and environment management.
-*   **Testing**: Expand test coverage for both backend and frontend components.
+```
+FOOD-creative-acts/
+├── app.py                 # Flask server
+├── templates/
+│   └── index.html        # Web interface
+├── thinkers.json         # Creative traditions data
+├── provocations.json     # Saved provocations
+├── requirements.txt      # Python dependencies
+└── .env                  # API keys (not in repo)
+```
 
-Feel free to fork this repository, implement your ideas, and contribute back to the community!
+## How It Works
+
+1. The app randomly selects a "guiding spirit" from 25+ creative thinkers (Situationists, Dadaists, etc.)
+2. It picks a conceptual seed from a curated list of 30 evocative phrases
+3. Gemini AI combines these elements following strict rules to create a provocation
+4. Each provocation includes:
+   - A poetic setup sentence
+   - One specific, physical task to perform
+
+## Examples
+
+**Provocation**: "The city speaks in forgotten alphabets."  
+**Task**: "Walk your usual route backwards, photographing only shadows cast by signs."
+
+**Provocation**: "Empty rooms hold the weight of departed conversations."  
+**Task**: "Sit in a public space for exactly 7 minutes, writing down only the last word you hear each minute."
+
+## Contributing
+
+Feel free to fork and enhance! Some ideas:
+- Add new thinkers to `thinkers.json`
+- Expand the conceptual seeds list
+- Create themed generation modes
+- Build a gallery of favorite provocations
+- Add social sharing features
+
+## License
+
+MIT
