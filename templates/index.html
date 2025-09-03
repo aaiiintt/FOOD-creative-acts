@@ -8,13 +8,12 @@
             * {
                 margin: 0;
                 padding: 0;
-                background-color: #fff;
                 box-sizing: border-box;
             }
 
             body {
                 font-family: "Courier New", Courier, monospace;
-                background-color: #fff;
+                background-color: #ddd;
                 color: #111;
                 display: flex;
                 justify-content: center;
@@ -36,8 +35,9 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin-bottom: 2rem;
+                margin-bottom: 3rem;
                 position: relative;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
 
             .provocation-text {
@@ -71,27 +71,28 @@
                 cursor: pointer;
                 transition: all 0.2s;
                 width: 100%;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
             }
 
             button:hover:not(:disabled) {
                 background-color: #111;
                 color: #fff;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
             }
 
             button:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             }
 
             .feedback-container {
-                margin-top: 1rem;
+                margin-top: 2rem;
                 padding: 1.5rem;
                 border: 1px solid #111;
                 background-color: #f5f5f5;
                 display: none; /* Hidden by default, shown via JavaScript based on config */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
 
             .feedback-title {
@@ -121,19 +122,19 @@
             .vote-btn.up-vote {
                 background-color: #fff;
                 border: 1px solid #111;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
             }
 
             .vote-btn.down-vote {
                 background-color: #fff;
                 border: 1px solid #111;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
             }
 
             .vote-btn:hover:not(:disabled) {
                 background-color: #111;
                 color: #fff;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
             }
 
             .comment-section {
@@ -169,20 +170,20 @@
                 background-color: #111;
                 color: #fff;
                 border: 1px solid #111;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
             }
 
             .submit-feedback-btn:hover:not(:disabled) {
                 background-color: #333;
                 border: 1px solid #333;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
             }
 
             .submit-feedback-btn:disabled {
                 background-color: #666;
                 border: 1px solid #666;
                 cursor: not-allowed;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             }
 
             .task-separator {
