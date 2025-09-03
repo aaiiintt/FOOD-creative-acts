@@ -47,6 +47,10 @@
                 width: 100%;
             }
 
+            .provocation-text strong {
+                font-weight: normal;
+            }
+
             .loading {
                 text-align: center;
                 opacity: 0.7;
@@ -61,37 +65,40 @@
                 background-color: #fff;
                 border: 1px solid #111;
                 color: #111;
-                padding: 1rem 1rem;
+                padding: 1rem 2rem;
                 font-size: 1rem;
                 font-family: inherit;
                 cursor: pointer;
                 transition: all 0.2s;
                 width: 100%;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             }
 
             button:hover:not(:disabled) {
                 background-color: #111;
                 color: #fff;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             }
 
             button:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             }
 
             .feedback-container {
-                margin-top: 2rem;
+                margin-top: 1rem;
                 padding: 1.5rem;
-                border: 1px solid #000;
-                background-color: #ddd;
+                border: 1px solid #111;
+                background-color: #f5f5f5;
                 display: none; /* Hidden by default, shown via JavaScript based on config */
             }
 
             .feedback-title {
                 font-size: 1rem;
+                font-weight: normal;
                 margin-bottom: 1rem;
                 text-align: center;
-                background-color: #ddd;
             }
 
             .vote-container {
@@ -109,22 +116,24 @@
                 align-items: center;
                 justify-content: center;
                 gap: 0.5rem;
-                background-color: #ddd;
             }
 
             .vote-btn.up-vote {
                 background-color: #fff;
                 border: 1px solid #111;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             }
 
             .vote-btn.down-vote {
                 background-color: #fff;
                 border: 1px solid #111;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             }
 
             .vote-btn:hover:not(:disabled) {
                 background-color: #111;
                 color: #fff;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             }
 
             .comment-section {
@@ -135,7 +144,6 @@
                 display: block;
                 margin-bottom: 0.5rem;
                 font-size: 1rem;
-                background-color: #ddd;
             }
 
             .comment-textarea {
@@ -160,22 +168,30 @@
                 padding: 1rem;
                 background-color: #111;
                 color: #fff;
-                border: none;
+                border: 1px solid #111;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             }
 
             .submit-feedback-btn:hover:not(:disabled) {
                 background-color: #333;
+                border: 1px solid #333;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             }
 
             .submit-feedback-btn:disabled {
                 background-color: #666;
+                border: 1px solid #666;
                 cursor: not-allowed;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             }
 
             .task-separator {
                 display: block;
                 margin: 2rem 0 1rem 0;
-                font-weight: bold;
+                font-weight: normal;
+                text-transform: uppercase;
+                text-decoration: underline;
+                letter-spacing: 0.5px;
             }
         </style>
     </head>

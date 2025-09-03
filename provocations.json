@@ -327,5 +327,9 @@
   {
     "provocation": "Let unheard whispers guide your steps through the concrete maze.",
     "task": "Walk for thirty minutes, turning at every unexpected sound or feeling."
+  },
+  {
+    "provocation": "Unearth the whispers of today's choices from the dust of your desk.",
+    "task": "Flip a coin; heads, choose the leftmost object; tails, the rightmost."
   }
 ]
