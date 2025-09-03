@@ -1,451 +1,488 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Acts Generator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Creative Acts Generator</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+                box-sizing: border-box;
+            }
 
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #1d1212;
-            color: #111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
-        }
+            body {
+                font-family: "Courier New", Courier, monospace;
+                background-color: #fff;
+                color: #111;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                padding: 2rem;
+            }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-        }
+            .container {
+                width: 100%;
+                max-width: 600px;
+            }
 
-        .provocation-box {
-            background-color: #fff;
-            border: 1px solid #111;
-            padding: 3rem;
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
+            .provocation-box {
+                background-color: #fff;
+                border: 1px solid #000;
+                padding: 3rem;
+                min-height: 250px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 2rem;
+                position: relative;
+            }
 
-        .provocation-text {
-            font-size: 1.2rem;
-            line-height: 1.7;
-            text-align: left;
-            width: 100%;
-        }
+            .provocation-text {
+                font-size: 1.2rem;
+                line-height: 1.7;
+                text-align: left;
+                width: 100%;
+            }
 
-        .loading {
-            text-align: center;
-            opacity: 0.7;
-        }
+            .loading {
+                text-align: center;
+                opacity: 0.7;
+            }
 
-        .error {
-            color: #d90429;
-            text-align: center;
-        }
+            .error {
+                color: #d90429;
+                text-align: center;
+            }
 
-        button {
-            background-color: #fff;
-            border: 1px solid #111;
-            color: #111;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-            width: 100%;
-        }
+            button {
+                background-color: #fff;
+                border: 1px solid #111;
+                color: #111;
+                padding: 1rem 1rem;
+                font-size: 1rem;
+                font-family: inherit;
+                cursor: pointer;
+                transition: all 0.2s;
+                width: 100%;
+            }
 
-        button:hover:not(:disabled) {
-            background-color: #111;
-            color: #fff;
-        }
+            button:hover:not(:disabled) {
+                background-color: #111;
+                color: #fff;
+            }
 
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+            button:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
 
-        .feedback-container {
-            margin-top: 1rem;
-            padding: 1.5rem;
-            border: 1px solid #111;
-            background-color: #fff;
-            display: none; /* Hidden by default, shown via JavaScript based on config */
-        }
+            .feedback-container {
+                margin-top: 2rem;
+                padding: 1.5rem;
+                border: 1px solid #000;
+                background-color: #ddd;
+                display: none; /* Hidden by default, shown via JavaScript based on config */
+            }
 
-        .feedback-title {
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
+            .feedback-title {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                text-align: center;
+                background-color: #ddd;
+            }
 
-        .vote-container {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            justify-content: center;
-        }
+            .vote-container {
+                display: flex;
+                gap: 1rem;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
 
-        .vote-btn {
-            font-size: 1.5rem;
-            padding: 0.8rem 1.2rem;
-            min-width: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+            .vote-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+                min-width: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                background-color: #ddd;
+            }
 
-        .vote-btn.up-vote {
-            background-color: #fff;
-            border: 1px solid #111;
-        }
+            .vote-btn.up-vote {
+                background-color: #fff;
+                border: 1px solid #111;
+            }
 
-        .vote-btn.down-vote {
-            background-color: #fff;
-            border: 1px solid #111;
-        }
+            .vote-btn.down-vote {
+                background-color: #fff;
+                border: 1px solid #111;
+            }
 
-        .vote-btn:hover:not(:disabled) {
-            background-color: #111;
-            color: #fff;
-        }
+            .vote-btn:hover:not(:disabled) {
+                background-color: #111;
+                color: #fff;
+            }
 
-        .comment-section {
-            margin-top: 1rem;
-        }
+            .comment-section {
+                margin-top: 1rem;
+            }
 
-        .comment-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
+            .comment-label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+                background-color: #ddd;
+            }
 
-        .comment-textarea {
-            width: 100%;
-            min-height: 80px;
-            padding: 0.5rem;
-            border: 1px solid #111;
-            font-family: inherit;
-            font-size: 0.9rem;
-            resize: vertical;
-            box-sizing: border-box;
-        }
+            .comment-textarea {
+                width: 100%;
+                min-height: 80px;
+                padding: 0.5rem;
+                border: 1px solid #111;
+                font-family: inherit;
+                font-size: 1rem;
+                resize: vertical;
+                box-sizing: border-box;
+            }
 
-        .comment-textarea:focus {
-            outline: none;
-            border-color: #333;
-        }
+            .comment-textarea:focus {
+                outline: none;
+                border-color: #333;
+            }
 
-        .submit-feedback-btn {
-            margin-top: 1rem;
-            width: 100%;
-            padding: 1rem;
-            background-color: #111;
-            color: #fff;
-            border: none;
-        }
+            .submit-feedback-btn {
+                margin-top: 1rem;
+                width: 100%;
+                padding: 1rem;
+                background-color: #111;
+                color: #fff;
+                border: none;
+            }
 
-        .submit-feedback-btn:hover:not(:disabled) {
-            background-color: #333;
-        }
+            .submit-feedback-btn:hover:not(:disabled) {
+                background-color: #333;
+            }
 
-        .submit-feedback-btn:disabled {
-            background-color: #666;
-            cursor: not-allowed;
-        }
+            .submit-feedback-btn:disabled {
+                background-color: #666;
+                cursor: not-allowed;
+            }
 
-        .task-separator {
-            display: block;
-            margin: 2rem 0 1rem 0;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="provocation-box" id="provocationBox">
-            <div class="provocation-text" id="provocationText">
-                <span class="loading">Initializing...</span>
+            .task-separator {
+                display: block;
+                margin: 2rem 0 1rem 0;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="provocation-box" id="provocationBox">
+                <div class="provocation-text" id="provocationText">
+                    <span class="loading">Initializing...</span>
+                </div>
             </div>
-        </div>
-        
-        <button id="generateBtn" onclick="generateProvocation()" disabled>
-            Generate New Provocation
-        </button>
-        
-        <div class="feedback-container" id="feedbackContainer">
-            <div class="feedback-title">How was this creative act?</div>
-            
-            <div class="vote-container">
-                <button class="vote-btn up-vote" onclick="selectRating(1)" id="upBtn">
-                    ↑ Good
-                </button>
-                <button class="vote-btn down-vote" onclick="selectRating(-1)" id="downBtn">
-                    ↓ Not Good
-                </button>
-            </div>
-            
-            <div class="comment-section">
-                <label class="comment-label" for="feedbackComment">
-                    What specifically was good or could be improved?
-                </label>
-                <textarea 
-                    class="comment-textarea" 
-                    id="feedbackComment" 
-                    placeholder="Share your thoughts about this creative act..."
-                ></textarea>
-            </div>
-            
-            <button class="submit-feedback-btn" onclick="submitFeedback()" id="submitBtn" disabled>
-                Submit Feedback
+
+            <button id="generateBtn" onclick="generateProvocation()" disabled>
+                Generate New Provocation
             </button>
-        </div>
-    </div>
 
-    <script>
-        let thinkers = {};
-        let seeds = [];
-        let promptTemplate = {};
-        let appConfig = {};
-        let currentProvocationIndex = -1;
-        let selectedRating = null;
-        
-        async function initialize() {
-            try {
-                // Load all data in parallel
-                const [thinkersResp, seedsResp, promptResp, configResp] = await Promise.all([
-                    fetch('/api/thinkers'),
-                    fetch('/api/seeds'),
-                    fetch('/api/prompt'),
-                    fetch('/api/config')
-                ]);
-                
-                if (!thinkersResp.ok) throw new Error('Failed to load thinkers');
-                if (!seedsResp.ok) throw new Error('Failed to load seeds');
-                if (!promptResp.ok) throw new Error('Failed to load prompt template');
-                if (!configResp.ok) throw new Error('Failed to load config');
-                
-                const [thinkersData, seedsData, promptData, configData] = await Promise.all([
-                    thinkersResp.json(),
-                    seedsResp.json(),
-                    promptResp.json(),
-                    configResp.json()
-                ]);
-                
-                // Process thinkers data
-                Object.entries(thinkersData).forEach(([name, info]) => {
-                    thinkers[name] = {
-                        description: info.description || '',
-                        themes: info.themes || [],
-                        keywords: info.keywords || []
-                    };
-                });
-                
-                // Store seeds, prompt template, and config
-                seeds = seedsData.seeds || [];
-                promptTemplate = promptData;
-                appConfig = configData;
-                
-                // Show/hide feedback container based on config
-                const feedbackContainer = document.getElementById('feedbackContainer');
-                if (appConfig.feedback_mode) {
-                    feedbackContainer.style.display = 'block';
-                } else {
-                    feedbackContainer.style.display = 'none';
-                }
-                
-                document.getElementById('generateBtn').disabled = false;
-                await generateProvocation();
-                
-            } catch (error) {
-                console.error('Initialization error:', error);
-                document.getElementById('provocationText').innerHTML = 
-                    '<span class="error">Error: Could not load application data. Please check the server.</span>';
-            }
-        }
-        
-        async function generateProvocation() {
-            const btn = document.getElementById('generateBtn');
-            const textEl = document.getElementById('provocationText');
-            
-            btn.disabled = true;
-            textEl.innerHTML = '<span class="loading">Generating...</span>';
-            
-            // Hide feedback container during generation
-            if (appConfig.feedback_mode) {
-                document.getElementById('feedbackContainer').style.display = 'none';
-            }
-            
-            try {
-                // Pick random thinkers using Fisher-Yates shuffle
-                const thinkerNames = Object.keys(thinkers);
-                const shuffled = [...thinkerNames];
-                for (let i = shuffled.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-                }
-                const selected = shuffled.slice(0, Math.min(3, shuffled.length));
-                
-                // Use loaded prompt template
-                const systemPrompt = promptTemplate.system_prompt || '';
-                
-                // Pick just one thinker for clearer guidance
-                const selectedThinker = selected[0];
-                const spiritInstruction = thinkers[selectedThinker].description;
-                
-                // Pick random seed from loaded seeds
-                const seed = seeds[Math.floor(Math.random() * seeds.length)];
-                
-                // Build user prompt from template
-                const userPromptTemplate = promptTemplate.user_prompt_template || 
-                    'GUIDING SPIRIT: {thinker_name}\n{thinker_instruction}\n\nBased on the conceptual seed "{seed}", generate a creative provocation that follows all the rules, especially the Guiding Spirit instruction.';
-                
-                const userPrompt = userPromptTemplate
-                    .replace('{thinker_name}', selectedThinker)
-                    .replace('{thinker_instruction}', spiritInstruction)
-                    .replace('{seed}', seed);
-                
-                const response = await fetch('/api/generate', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({systemPrompt, userPrompt})
-                });
-                
-                if (!response.ok) throw new Error('Generation failed');
-                
-                const data = await response.json();
-                
-                if (data.provocation) {
-                    displayProvocation(data);
-                    
-                    // Store the provocation index for feedback
-                    const provocationsResp = await fetch('/api/provocations');
-                    const provocations = await provocationsResp.json();
-                    currentProvocationIndex = provocations.length - 1;
-                    
-                    // Show feedback container if enabled in config
+            <div class="feedback-container" id="feedbackContainer">
+                <div class="feedback-title">FOR INTERNAL USE ONLY</div>
+
+                <div class="vote-container">
+                    <button
+                        class="vote-btn up-vote"
+                        onclick="selectRating(1)"
+                        id="upBtn"
+                    >
+                        ↑ Good
+                    </button>
+                    <button
+                        class="vote-btn down-vote"
+                        onclick="selectRating(-1)"
+                        id="downBtn"
+                    >
+                        ↓ Not Good
+                    </button>
+                </div>
+
+                <div class="comment-section">
+                    <label class="comment-label" for="feedbackComment">
+                        What specifically was good or could be improved?
+                    </label>
+                    <textarea
+                        class="comment-textarea"
+                        id="feedbackComment"
+                        placeholder="Share your thoughts about this creative act..."
+                    ></textarea>
+                </div>
+
+                <button
+                    class="submit-feedback-btn"
+                    onclick="submitFeedback()"
+                    id="submitBtn"
+                    disabled
+                >
+                    Submit Feedback
+                </button>
+            </div>
+        </div>
+
+        <script>
+            let thinkers = {};
+            let seeds = [];
+            let promptTemplate = {};
+            let appConfig = {};
+            let currentProvocationIndex = -1;
+            let selectedRating = null;
+
+            async function initialize() {
+                try {
+                    // Load all data in parallel
+                    const [thinkersResp, seedsResp, promptResp, configResp] =
+                        await Promise.all([
+                            fetch("/api/thinkers"),
+                            fetch("/api/seeds"),
+                            fetch("/api/prompt"),
+                            fetch("/api/config"),
+                        ]);
+
+                    if (!thinkersResp.ok)
+                        throw new Error("Failed to load thinkers");
+                    if (!seedsResp.ok) throw new Error("Failed to load seeds");
+                    if (!promptResp.ok)
+                        throw new Error("Failed to load prompt template");
+                    if (!configResp.ok)
+                        throw new Error("Failed to load config");
+
+                    const [thinkersData, seedsData, promptData, configData] =
+                        await Promise.all([
+                            thinkersResp.json(),
+                            seedsResp.json(),
+                            promptResp.json(),
+                            configResp.json(),
+                        ]);
+
+                    // Process thinkers data
+                    Object.entries(thinkersData).forEach(([name, info]) => {
+                        thinkers[name] = {
+                            description: info.description || "",
+                            themes: info.themes || [],
+                            keywords: info.keywords || [],
+                        };
+                    });
+
+                    // Store seeds, prompt template, and config
+                    seeds = seedsData.seeds || [];
+                    promptTemplate = promptData;
+                    appConfig = configData;
+
+                    // Show/hide feedback container based on config
+                    const feedbackContainer =
+                        document.getElementById("feedbackContainer");
                     if (appConfig.feedback_mode) {
-                        resetFeedbackForm();
-                        document.getElementById('feedbackContainer').style.display = 'block';
+                        feedbackContainer.style.display = "block";
+                    } else {
+                        feedbackContainer.style.display = "none";
                     }
-                } else {
-                    throw new Error('Invalid response format');
+
+                    document.getElementById("generateBtn").disabled = false;
+                    await generateProvocation();
+                } catch (error) {
+                    console.error("Initialization error:", error);
+                    document.getElementById("provocationText").innerHTML =
+                        '<span class="error">Error: Could not load application data. Please check the server.</span>';
                 }
-                
-            } catch (error) {
-                console.error('Generation error:', error);
-                textEl.innerHTML = '<span class="error">Error generating provocation. Please try again.</span>';
-            } finally {
-                btn.disabled = false;
             }
-        }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        function displayProvocation(data) {
-            const textEl = document.getElementById('provocationText');
-            let html = `<strong>${escapeHtml(data.provocation || '')}</strong>`;
-            
-            // Handle both old format (task1, task2, task3) and new format (task)
-            if (data.task) {
-                html += '<span class="task-separator">Task:</span>';
-                html += `<p>${escapeHtml(data.task)}</p>`;
-            } else if (data.task1) {
-                // Fallback for old format
-                const tasks = [data.task1, data.task2, data.task3].filter(t => t && t.trim());
-                if (tasks.length > 0) {
+
+            async function generateProvocation() {
+                const btn = document.getElementById("generateBtn");
+                const textEl = document.getElementById("provocationText");
+
+                btn.disabled = true;
+                textEl.innerHTML = '<span class="loading">Generating...</span>';
+
+                // Hide feedback container during generation
+                if (appConfig.feedback_mode) {
+                    document.getElementById("feedbackContainer").style.display =
+                        "none";
+                }
+
+                try {
+                    // Pick random thinkers using Fisher-Yates shuffle
+                    const thinkerNames = Object.keys(thinkers);
+                    const shuffled = [...thinkerNames];
+                    for (let i = shuffled.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                    }
+                    const selected = shuffled.slice(
+                        0,
+                        Math.min(3, shuffled.length),
+                    );
+
+                    // Use loaded prompt template
+                    const systemPrompt = promptTemplate.system_prompt || "";
+
+                    // Pick just one thinker for clearer guidance
+                    const selectedThinker = selected[0];
+                    const spiritInstruction =
+                        thinkers[selectedThinker].description;
+
+                    // Pick random seed from loaded seeds
+                    const seed =
+                        seeds[Math.floor(Math.random() * seeds.length)];
+
+                    // Build user prompt from template
+                    const userPromptTemplate =
+                        promptTemplate.user_prompt_template ||
+                        'GUIDING SPIRIT: {thinker_name}\n{thinker_instruction}\n\nBased on the conceptual seed "{seed}", generate a creative provocation that follows all the rules, especially the Guiding Spirit instruction.';
+
+                    const userPrompt = userPromptTemplate
+                        .replace("{thinker_name}", selectedThinker)
+                        .replace("{thinker_instruction}", spiritInstruction)
+                        .replace("{seed}", seed);
+
+                    const response = await fetch("/api/generate", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ systemPrompt, userPrompt }),
+                    });
+
+                    if (!response.ok) throw new Error("Generation failed");
+
+                    const data = await response.json();
+
+                    if (data.provocation) {
+                        displayProvocation(data);
+
+                        // Store the provocation index for feedback
+                        const provocationsResp =
+                            await fetch("/api/provocations");
+                        const provocations = await provocationsResp.json();
+                        currentProvocationIndex = provocations.length - 1;
+
+                        // Show feedback container if enabled in config
+                        if (appConfig.feedback_mode) {
+                            resetFeedbackForm();
+                            document.getElementById(
+                                "feedbackContainer",
+                            ).style.display = "block";
+                        }
+                    } else {
+                        throw new Error("Invalid response format");
+                    }
+                } catch (error) {
+                    console.error("Generation error:", error);
+                    textEl.innerHTML =
+                        '<span class="error">Error generating provocation. Please try again.</span>';
+                } finally {
+                    btn.disabled = false;
+                }
+            }
+
+            function escapeHtml(text) {
+                const div = document.createElement("div");
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            function displayProvocation(data) {
+                const textEl = document.getElementById("provocationText");
+                let html = `<strong>${escapeHtml(data.provocation || "")}</strong>`;
+
+                // Handle both old format (task1, task2, task3) and new format (task)
+                if (data.task) {
                     html += '<span class="task-separator">Task:</span>';
-                    html += `<p>${escapeHtml(tasks[0])}</p>`;
+                    html += `<p>${escapeHtml(data.task)}</p>`;
+                } else if (data.task1) {
+                    // Fallback for old format
+                    const tasks = [data.task1, data.task2, data.task3].filter(
+                        (t) => t && t.trim(),
+                    );
+                    if (tasks.length > 0) {
+                        html += '<span class="task-separator">Task:</span>';
+                        html += `<p>${escapeHtml(tasks[0])}</p>`;
+                    }
+                }
+
+                textEl.innerHTML = html;
+            }
+
+            function selectRating(value) {
+                selectedRating = value;
+
+                // Update button styles
+                const upBtn = document.getElementById("upBtn");
+                const downBtn = document.getElementById("downBtn");
+                const submitBtn = document.getElementById("submitBtn");
+
+                upBtn.style.backgroundColor = value === 1 ? "#111" : "#fff";
+                upBtn.style.color = value === 1 ? "#fff" : "#111";
+                downBtn.style.backgroundColor = value === -1 ? "#111" : "#fff";
+                downBtn.style.color = value === -1 ? "#fff" : "#111";
+
+                // Enable submit button
+                submitBtn.disabled = false;
+            }
+
+            async function submitFeedback() {
+                if (currentProvocationIndex < 0 || selectedRating === null)
+                    return;
+
+                const comment = document
+                    .getElementById("feedbackComment")
+                    .value.trim();
+                const submitBtn = document.getElementById("submitBtn");
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Submitting...";
+
+                try {
+                    await fetch("/api/vote", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            id: currentProvocationIndex,
+                            vote: selectedRating,
+                            comment: comment,
+                        }),
+                    });
+
+                    // Hide feedback container after successful submission
+                    document.getElementById("feedbackContainer").style.display =
+                        "none";
+                } catch (error) {
+                    console.error("Feedback submission error:", error);
+                    alert("Failed to submit feedback. Please try again.");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit Feedback";
                 }
             }
-            
-            textEl.innerHTML = html;
-        }
-        
-        function selectRating(value) {
-            selectedRating = value;
-            
-            // Update button styles
-            const upBtn = document.getElementById('upBtn');
-            const downBtn = document.getElementById('downBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            upBtn.style.backgroundColor = value === 1 ? '#111' : '#fff';
-            upBtn.style.color = value === 1 ? '#fff' : '#111';
-            downBtn.style.backgroundColor = value === -1 ? '#111' : '#fff';
-            downBtn.style.color = value === -1 ? '#fff' : '#111';
-            
-            // Enable submit button
-            submitBtn.disabled = false;
-        }
-        
-        async function submitFeedback() {
-            if (currentProvocationIndex < 0 || selectedRating === null) return;
-            
-            const comment = document.getElementById('feedbackComment').value.trim();
-            const submitBtn = document.getElementById('submitBtn');
-            
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-            
-            try {
-                await fetch('/api/vote', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        id: currentProvocationIndex,
-                        vote: selectedRating,
-                        comment: comment
-                    })
-                });
-                
-                // Hide feedback container after successful submission
-                document.getElementById('feedbackContainer').style.display = 'none';
-                
-            } catch (error) {
-                console.error('Feedback submission error:', error);
-                alert('Failed to submit feedback. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Feedback';
+
+            function resetFeedbackForm() {
+                selectedRating = null;
+                document.getElementById("feedbackComment").value = "";
+                document.getElementById("submitBtn").disabled = true;
+                document.getElementById("submitBtn").textContent =
+                    "Submit Feedback";
+
+                // Reset button styles
+                const upBtn = document.getElementById("upBtn");
+                const downBtn = document.getElementById("downBtn");
+                upBtn.style.backgroundColor = "#fff";
+                upBtn.style.color = "#111";
+                downBtn.style.backgroundColor = "#fff";
+                downBtn.style.color = "#111";
             }
-        }
-        
-        function resetFeedbackForm() {
-            selectedRating = null;
-            document.getElementById('feedbackComment').value = '';
-            document.getElementById('submitBtn').disabled = true;
-            document.getElementById('submitBtn').textContent = 'Submit Feedback';
-            
-            // Reset button styles
-            const upBtn = document.getElementById('upBtn');
-            const downBtn = document.getElementById('downBtn');
-            upBtn.style.backgroundColor = '#fff';
-            upBtn.style.color = '#111';
-            downBtn.style.backgroundColor = '#fff';
-            downBtn.style.color = '#111';
-        }
-        
-        // Initialize on load
-        window.addEventListener('load', initialize);
-    </script>
-</body>
+
+            // Initialize on load
+            window.addEventListener("load", initialize);
+        </script>
+    </body>
 </html>
