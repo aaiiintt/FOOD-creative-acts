@@ -1,0 +1,67 @@
+To get our application ready for production, we need to stop using Flask's built-in development server and start using a proper production server called Gunicorn. This server is fast, secure, and can handle many users at once.
+
+The process is simple. We just need to:
+
+Install Gunicorn.
+
+Create a standard entry point file for Gunicorn to use.
+
+Run the app using the gunicorn command.
+
+Let's assume our project structure looks something like this:
+
+myproject/
+├── app/
+│   ├── __init__.py   # The file where you create the Flask app (e.g., app = Flask(__name__))
+│   ├── routes.py
+│   └── ...
+├── venv/
+└── requirements.txt
+## Step 1: Install Gunicorn and Update Requirements
+First, make sure your virtual environment is activated. Then, install Gunicorn using pip.
+
+Bash
+
+# Install gunicorn
+pip install gunicorn
+
+# Save it to our project's dependencies
+pip freeze > requirements.txt
+Adding it to requirements.txt is crucial so that when we deploy the project elsewhere, Gunicorn gets installed automatically.
+
+## Step 2: Create a wsgi.py Entry Point
+Gunicorn needs to know where our Flask app object is located. The standard way to do this is by creating a new file in the root directory of our project called wsgi.py.
+
+Create a file named wsgi.py in the top-level myproject/ folder.
+
+Add the following single line of code to it:
+
+Python
+
+# wsgi.py
+from app import app
+
+# This line imports the 'app' instance from our 'app' package (the app/__init__.py file).
+This file acts as a simple doorway, telling Gunicorn "the application you need to run is right here."
+
+## Step 3: Run the App with Gunicorn
+Now, instead of using flask run, you'll use the gunicorn command from your terminal (in the project's root folder).
+
+The basic command follows the format: gunicorn [options] <module_name>:<variable_name>
+
+Bash
+
+# Run Gunicorn from your project's root directory
+gunicorn --workers 3 --bind 0.0.0.0:8000 wsgi:app
+Let's break that command down:
+
+--workers 3: This tells Gunicorn to create 3 separate processes to handle requests. This allows our app to serve multiple users at the same time. Think of it like opening three checkout lanes at a supermarket instead of just one. A good starting point is (2 * number_of_cpu_cores) + 1.
+
+--bind 0.0.0.0:8000: This tells Gunicorn to listen for requests from any IP address (0.0.0.0) on port 8000. The development server uses 127.0.0.1 (localhost), which only accepts connections from your own computer.
+
+wsgi:app: This is the most important part.
+
+wsgi tells Gunicorn to look for the wsgi.py file.
+
+app tells it that inside that file, the variable it needs to run is named app.
+
