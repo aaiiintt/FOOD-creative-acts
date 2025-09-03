@@ -203,5 +203,13 @@
   {
     "provocation": "Let chance rewrite your familiar streets.",
     "task": "For three days, at each intersection, flip a coin; heads, turn right; tails, turn left.  Record your journey."
+  },
+  {
+    "provocation": "Unearth the buried meanings, where headlines hide in plain sight.",
+    "task": "Find a newspaper headline, replace all vowels with different vowels, write both versions on the original headline, and note the altered meaning."
+  },
+  {
+    "provocation": "Where unseen lines meet, a silent story unfolds.",
+    "task": "Place a single grain of rice on a flat surface, then close your eyes for exactly 4 minutes and 33 seconds."
   }
 ]
